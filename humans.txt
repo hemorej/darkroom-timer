@@ -1,0 +1,17 @@
+Your title: Jerome Arfouche
+Site: http://the-invisible-cities.com 
+Twitter: @jerome_a_
+Location: Montreal, Canada
+
+
+/* THANKS */
+Name: Foundation
+Standards: HTML5, CSS3
+Components: jQuery, Orbit, Reveal
+Software: Sublime, Git, Sass
+
+/* SITE */
+Last update: 2014/11/17
+Standards: HTML5, CSS3
+Components: Modernizr, jQuery, Foundation
+Software: Sublime, uncss

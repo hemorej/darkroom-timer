@@ -1,0 +1,438 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="A simple timer application for film development">
+  <meta name="author" content="Jerome Arfouche">
+  <link rel="shortcut icon" type="image/x-icon" href="css/favicon.ico" >
+  <link rel="apple-touch-icon" sizes="72x72" href="css/favicon72.ico" />
+  <link rel="apple-touch-icon" sizes="114x114" href="css/favicon114.ico" />
+
+  <meta property="og:title" content="Darkroom timer">
+  <!-- <meta property="og:image" content="link_to_image"> -->
+  <meta property="og:description" content="A simple timer application for film development">
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@jerome_a_" />
+  <meta name="twitter:creator" content="@jerome_a_">
+  <meta name="twitter:title" content="Darkroom timer" />
+  <meta name="twitter:description" content="A simple timer application for film development" />
+  <meta name="twitter:url" content="http://jerome-arfouche.com/darkroom" />
+
+  <title>Online Darkroom</title>
+  <link rel="stylesheet" href="css/darkroom.css" />
+  <script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+ <div class="row title text-center margin-bottom">
+  <h1>Online Darkroom Timer <small>beta</small></h1>
+</div>
+<form data-abide="ajax" id="minutes" name="minutes">
+  <div class="row">
+    <div class="show-for-medium-up small-1 medium-1 columns">
+      <a href="#" class="1-less tiny">-60"</a>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-less tiny">-30"</a>
+    </div>
+
+    <div class="small-3 medium-2 columns">
+      <label for="development" class="right">Develop for</label>
+    </div>
+
+    <div class="small-4 medium-4 columns">
+      <input tabindex=1 id="development" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" step="5" title="development time in minutes">
+      <small class="error">How long is development ?</small>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-more tiny">+30"</a>
+    </div>
+
+    <div class="show-for-medium-up small-1 medium-1 columns">
+      <a href="#" class="1-more tiny">+60"</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-less tiny">-60"</a>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-less  tiny">-30"</a>
+    </div>
+
+    <div class="small-3 medium-2 columns">
+      <label for="inversion" class="right">Inversion every</label>
+    </div>
+
+    <div class="small-4 medium-4 columns">
+      <input tabindex=2 id="inversion" type="number" placeholder="minutes" pattern="[0-9]*" required data-abide-validator="inversionValidator" step="0.5" title="how often to invert, in minutes"> 
+      <small id="invert-error" class="error">How often is inversion ?</small>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-more tiny">+30"</a>
+    </div>
+
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-more tiny">+60"</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-less tiny">-60"</a>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-less tiny">-30"</a>
+    </div>
+
+    <div class="small-3 medium-2 columns">
+      <label for="stop" class="right">Stop for</label>
+    </div>
+
+    <div class="small-4 medium-4 columns">
+      <input tabindex=3 id="stop" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="stop bath duration, in minutes">
+      <small class="error">How long is the stop bath ?</small>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-more tiny">+30"</a>
+    </div>
+
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-more tiny">+60"</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-less tiny">-60"</a>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-less tiny">-30"</a>
+    </div>
+
+    <div class="small-3 medium-2 columns">
+      <label for="fix" class="right">Fix for</label>
+    </div>
+
+    <div class="small-4 medium-4 columns">
+      <input tabindex=4  id="fix" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="fixing duration, in minutes">
+      <small class="error">How long is fixing ?</small>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-more tiny">+30"</a>
+    </div>
+
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-more tiny">+60"</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-less tiny">-60"</a>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-less tiny">-30"</a>
+    </div>
+
+    <div class="small-3 medium-2 columns">
+      <label for="wash" class="right">Wash for</label>
+    </div>
+
+    <div class="small-4 medium-4 columns">
+      <input tabindex=5 id="wash" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="wash duration, in minutes">
+      <small class="error">How long is washing ?</small>
+    </div>
+
+    <div class="small-1 medium-1 columns">
+      <a href="#" class="0.5-more tiny">+30"</a>
+    </div>
+
+    <div class="show-for-medium-up medium-1 columns">
+      <a href="#" class="1-more tiny">+60"</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-4 medium-6 left columns">
+      <button tabindex=6 class="expand black" id="start" type="submit">Go !</button>
+    </div>
+    <div class="small-2 medium-4 columns">
+      <button class="right secondary" type="submit" id="resetForm">Reset</button>
+    </div>
+  </div>
+</form>
+
+<section class="timer">
+  <div class="row">
+   <h1 data-alert id="invertAlert" class="medium-push-1 medium-8 columns alert-box text-center warning">Get ready</h1>
+ </div>
+  <div class="row">
+		<button class="small-3 small-push-1 columns secondary" type="submit" id="pause">Pause</button>
+		<button class="small-3 small-pull-1 columns black" type="submit" id="resetInterval">Reset</button>
+	</div>
+  <div class="row">
+    <h3 class="small-3 medium-3 columns subheader medium-text-right">Development: </h3>
+    <h1 class="small-7 medium-7 columns small-text-right" id="devTimer"></h1>
+  </div>
+  <div class="row">
+    <h3 class="small-3 medium-3 columns subheader medium-text-right">Stopping: </h3>
+    <h1 class="small-7 medium-7 columns small-text-right" id="stopTimer"></h1>
+  </div>
+  <div class="row">
+    <h3 class="small-3 medium-3 columns subheader medium-text-right">Fixing: </h3>
+    <h1 class="small-7 medium-7 columns small-text-right" id="fixTimer"></h1>
+  </div>
+  <div class="row">
+    <h3 class="small-3 medium-3 columns subheader medium-text-right">Washing: </h3>
+    <h1 class="small-7 medium-7 columns small-text-right" id="washTimer"></h1>
+  </div>
+</section>
+<div class="footer row">
+  <div class="small-12 columns text-center">Made by Jerome. Like this ? <a target=_blank href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4ZH5A85ZKJXG2">Buy me film !</a> Found a bug ? <span id="contact"></span></div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  function gen_mail_to_link(lhs,rhs,subject)
+  {
+    email = "<a href=\"mailto" + ":" + lhs + "@" + rhs + "?subject=Bug! \"\>" + subject + "<\/a>"; 
+    return email;
+  } 
+  jQuery.fn.visibilityToggle = function() {
+      return this.css('visibility', function(i, visibility) {
+          return (visibility == 'visible') ? 'hidden' : 'visible';
+      });
+  };
+  jQuery.fn.visible = function() {
+    return this.css('visibility', 'visible');
+  };
+
+  jQuery.fn.invisible = function() {
+      return this.css('visibility', 'hidden');
+  };
+
+  jQuery.fn.isShown = function() {
+      return !this.css('display').localeCompare('none')==0 ;
+  };
+</script>
+
+<!-- <script src="//cdn.jsdelivr.net/foundation/5.4.7/js/foundation.min.js"></script> -->
+<script src="js/min.min.js"></script>
+<script>
+
+var alertTimer, counter, element, seconds, start, remaining ;
+var dev = getUrlParameter('dev') || "" ;
+var invert = getUrlParameter('invert') || "" ;
+var fix = getUrlParameter('fix') || "" ;
+var stop = getUrlParameter('stop') || "" ;
+var wash = getUrlParameter('wash') || "" ;
+
+$("#development").val(dev);
+$("#inversion").val(invert);
+$("#fix").val(fix);
+$("#stop").val(stop);
+$("#wash").val(wash);
+
+$("#development").focus();
+
+$("#contact").html(gen_mail_to_link('xxxxxxxxxxxxxxx','gmail.com','Let me know'));
+
+var running = false;
+var steps = new Array();
+
+$(document).foundation({
+   abide: {
+    validators: {
+      inversionValidator: function(el, required, parent) {
+        dev = parseFloat($("#development").val())*60;
+        invert = parseFloat(el.value)*60;
+        if(isNaN(invert) || invert <= 0){
+          $("#invert-error").html("How often is inversion ?");
+          return false;
+        }
+
+        if( dev < invert ){
+          $("#invert-error").html("Inversion time more than development ?");
+          return false;
+        }
+        return true;
+      },
+      numberValidator: function(el, required, parent){
+        number = parseFloat(el.value);
+        if((isNaN(number) || (number <= 0)) && required){
+          return false;
+        }
+        return true;
+      }
+    }
+  }
+});
+
+$("#pause").click(function(){
+  if(running == true){
+   clearInterval(counter);
+   clearTimeout(alertTimer);                           
+   running = false;
+   $("#pause").html("Resume");
+   remaining = remaining - (new Date().getTime() - start);
+ }
+ else{
+   counter = setInterval(timer, 1000);
+   if(alertTimer != null){
+    start = new Date().getTime();
+    alertTimer = setTimeout(clear, remaining);
+  }
+   running = true;
+   $("#pause").html("Pause");
+ }
+});
+
+$(".tiny").click(function(e){
+  operation = $(this).attr('class').replace("tiny", "").trim().split('-');
+  var newVal;
+  var input = $(this).parent().parent().find('input');
+  if(operation[1] == 'less'){
+    newVal = input.val() - parseFloat(operation[0]);
+    if (newVal < 0) newVal = 0 ;
+  }
+  else if(operation[1] == 'more'){
+    newVal = parseFloat(input.val()) + parseFloat(operation[0]);
+    if(isNaN(newVal)) newVal = parseFloat(operation[0]);
+  }
+
+  input.val(newVal);
+  e.preventDefault();
+});
+
+$("#resetForm").click(reset);
+$("#resetInterval").click(reset);
+
+function reset(){
+  $('input').val("");
+      clearInterval(counter);
+      clearTimeout(alertTimer);
+	  	dev = invert = stop = wash = fix = seconds = 0;
+	  	element = null ;
+	  	running = false;
+	  	$(".timer").hide();
+      $("#minutes").show();
+      url = window.location.toString();
+      window.location.replace( url.substring(0, url.indexOf('?')) );
+      return false;
+}
+
+function timer(){
+    if(!element){
+     next = steps.splice(0,2);
+     seconds = next[1];
+     element = next[0];
+   }
+
+   seconds=seconds-1;
+   if (seconds < 0){
+     clearInterval(counter);
+     next = steps.splice(0,2);
+     seconds = next[1];
+     element = next[0];
+     counter=setInterval(timer, 1000);
+     running = true;
+   }
+   
+   if(seconds % invert == 0 && element.localeCompare("#devTimer") == 0 ){
+     start = new Date().getTime();
+     remaining = 5000;
+     $("#invertAlert").html("invert...");
+     alertTimer = setInterval(clear, remaining);    
+   }
+
+   if(seconds % invert == 3 && element.localeCompare("#devTimer") == 0 && seconds > 3){
+    $("#invertAlert").visible();
+   }
+
+   $(element).html(parseInt(seconds/60).pad() + ":" +(seconds%60).pad());
+}
+
+    function clear(){
+      clearTimeout(alertTimer);
+      alertTimer = null;
+      $("#invertAlert").invisible();
+      $("#invertAlert").html("get ready");
+    }
+
+    Number.prototype.pad = function(size) {
+      var s = String(this);
+      while (s.length < (size || 2)) {s = "0" + s;}
+      return s;
+    }
+
+    $('#minutes')
+    .on('invalid.fndtn.abide', function () {
+     var invalid_fields = $(this).find('[data-invalid]');
+   })
+    .on('valid.fndtn.abide', function () {
+
+     url = window.location.toString();
+     url = url.substring(0, url.indexOf('?'));
+     url += "?dev=" + $("#development").val() + "&invert=" + $("#inversion").val() + "&stop=" + $("#stop").val() + "&fix=" + $("#fix").val() + "&wash=" + $("#wash").val() ;
+     window.history.pushState("recipe", "dev", url);
+      
+     dev = parseFloat($("#development").val())*60;
+     invert = parseFloat($("#inversion").val())*60;
+     fix = parseFloat($("#fix").val())*60;
+     stop = parseFloat($("#stop").val())*60;
+     wash = parseFloat($("#wash").val())*60;
+
+			$("#minutes").hide() ;
+			$(".timer").show() ;
+      $("#devTimer").html(parseInt(dev/60).pad() + ":" +(dev%60).pad());
+      $("#stopTimer").html(parseInt(stop/60).pad() + ":" +(stop%60).pad());
+      $("#fixTimer").html(parseInt(fix/60).pad() + ":" +(fix%60).pad());
+      $("#washTimer").html(parseInt(wash/60).pad() + ":" + (wash%60).pad());
+
+      steps = ["#devTimer", dev, "#stopTimer", stop, "#fixTimer", fix, "#washTimer", wash];
+      counter=setInterval(timer, 1000);
+      
+      $("#invertAlert").html("invert...");
+      $("#invertAlert").visible();
+      start = new Date().getTime();
+      remaining = 30000;
+      alertTimer = setTimeout(clear, remaining); //first 30sec
+
+      running = true;
+    });
+
+
+  $("html").keyup(function(e) {
+    if(e.keyCode == 32 && $(".timer").isShown()){
+      $("#pause").click();
+      return false;
+    }
+  });
+
+  function getUrlParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+      var sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] == sParam) 
+      {
+        return sParameterName[1];
+      }
+    }
+  }
+    </script>
+  </body>
+  </html>

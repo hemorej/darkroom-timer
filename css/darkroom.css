@@ -58,7 +58,6 @@ body {
 
 body {
   background: #DCDCDC;
-  /*background: white;*/
   color: #222222;
   padding: 0;
   margin: 0;
@@ -715,24 +714,6 @@ dialog::backdrop {
   }
 }
 
-/* Orientation targeting */
-
-/* Specific visibility for tables */
-
-@media only screen and (orientation: landscape) {
-  /* Specific visibility for tables */
-}
-
-@media only screen and (orientation: portrait) {
-  /* Specific visibility for tables */
-}
-
-/* Touch-enabled device targeting */
-
-/* Specific visibility for tables */
-
-/* Print visibility */
-
 .footer {
   margin-top: 100px;
 }
@@ -749,4 +730,18 @@ dialog::backdrop {
   font-variant: small-caps;
   font-size: 1.2rem;
 }
+#runningCounter h1 {color: black}
+.timer > .row h1 {color: #9A9A9A}
 
+:-webkit-full-screen h1, :-webkit-full-screen h3{font-size:55px}
+:-webkit-full-screen .timer {margin-top:12%}
+:-webkit-full-screen .title {visibility: hidden}
+:-moz-full-screen h1, :-moz-full-screen h3{font-size:55px}
+:-moz-full-screen .timer {margin-top:12%}
+:-moz-full-screen .title {visibility: hidden}
+:-ms-full-screen h1, :-ms-full-screen h3{font-size:55px}
+:-ms-full-screen .timer {margin-top:12%}
+:-ms-full-screen .title {visibility: hidden}
+:-webkit-full-screen html{background-color: #DCDCDC}
+:-moz-full-screen html{background-color: #DCDCDC}
+:-ms-full-screen html{background-color: #DCDCDC}

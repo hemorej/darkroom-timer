@@ -178,13 +178,13 @@
 
     <section class="timer">
         <div class="row">
-            <h1 data-alert id="invertAlert" class="medium-push-1 medium-8 columns alert-box text-center warning">Get ready</h1>
+            <h2 data-alert id="invertAlert" class="medium-push-1 medium-8 columns alert-box text-center warning">Get ready</h2>
         </div>
         <div class="row">
             <button class="small-3 small-push-1 columns secondary" type="submit" id="pause">Pause</button>
             <button class="small-3 small-pull-1 columns black" type="submit" id="resetInterval">Reset</button>
         </div>
-        <div class="row">
+        <div class="row" id="runningCounter">
             <h3 class="small-3 medium-3 columns subheader medium-text-right">Development: </h3>
             <h1 class="small-7 medium-7 columns small-text-right" id="devTimer"></h1>
         </div>
@@ -344,8 +344,11 @@ function timer() {
     if (seconds < 0) {
         clearInterval(counter);
         next = steps.splice(0, 2);
+        $(element).parent()[0].removeAttribute("id");
         seconds = next[1];
         element = next[0];
+        $(element).parent()[0].setAttribute("id", "runningCounter");
+
         counter = setInterval(timer, 1000);
         running = true;
     }
@@ -417,9 +420,15 @@ $('#minutes')
 
 
 $("html").keyup(function(e) {
-    if (e.keyCode == 32 && $(".timer").isShown()) {
-        $("#pause").click();
-        return false;
+    if(e.keyCode == 32 && $(".timer").isShown()){
+      $("#pause").click();
+      e.preventDefault();
+      return false;
+    }
+    else if(e.keyCode == 70 && screenfull.enabled){
+      screenfull.toggle();
+      e.preventDefault();
+      return false;
     }
 });
 

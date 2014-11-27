@@ -373,7 +373,9 @@ function timer() {
 
     if (seconds % invert == 3 && element.localeCompare("#devTimer") == 0 && seconds > 3) {
         $("#invertAlert").visible();
-        $("#beep").get(0).play();
+        if(Modernizr.audio){
+            $("#beep").get(0).play();
+        }
     }
 
     $(element).html(parseInt(seconds / 60).pad() + ":" + (seconds % 60).pad());

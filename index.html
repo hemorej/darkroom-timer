@@ -379,7 +379,10 @@ function timer() {
         $("#invertAlert").visible();
     }
 
-    $(element).html(parseInt(seconds / 60).pad() + ":" + (seconds % 60).pad());
+    var time = parseInt(seconds / 60).pad() + ":" + (seconds % 60).pad();
+    document.title = '[ '+time+ ' ]';
+    $(element).html(time);
+    
 }
 
 function clear() {

@@ -57,7 +57,7 @@ body {
 }
 
 body {
-  background: #DCDCDC;
+  background: #ffffff;
   color: #222222;
   padding: 0;
   margin: 0;
@@ -255,19 +255,19 @@ button.secondary:focus {
   color: #333333;
 }
 
-button.black {
-  background-color: #000;
+button.green {
+  background-color: #5da423;
   border-color: #9e0c0f;
   color: white;
 }
 
-button.black:hover,
-button.black:focus {
-  background-color: #000;
+button.green:hover,
+button.green:focus {
+  background-color: #5da423;
 }
 
-button.black:hover,
-button.black:focus {
+button.green:hover,
+button.green:focus {
   color: white;
 }
 

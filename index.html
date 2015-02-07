@@ -29,7 +29,7 @@
 
 <body>
     <div class="row title text-center margin-bottom">
-        <h1>Online Darkroom Timer <small>beta</small></h1>
+        <h1>Online C41 Darkroom Timer <small>beta</small></h1>
     </div>
     <form data-abide="ajax" id="minutes" name="minutes">
         <div class="row">
@@ -42,12 +42,12 @@
             </div>
 
             <div class="small-3 medium-2 columns">
-                <label for="development" class="right">Develop for</label>
+                <label for="warming" class="right">Pre-warming</label>
             </div>
 
             <div class="small-4 medium-4 columns">
-                <input tabindex=1 id="development" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" step="5" title="development time in minutes">
-                <small class="error">How long is development ?</small>
+                <input tabindex=1 id="warming" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" step="5" title="soaking time in minutes">
+                <small class="error">How long is pre-warming ?</small>
             </div>
 
             <div class="small-1 medium-1 columns">
@@ -87,6 +87,60 @@
         </div>
 
         <div class="row">
+            <div class="show-for-medium-up small-1 medium-1 columns">
+                <a href="#" class="1-less tiny">-60"</a>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-less tiny">-30"</a>
+            </div>
+
+            <div class="small-3 medium-2 columns">
+                <label for="development" class="right">Developer for</label>
+            </div>
+
+            <div class="small-4 medium-4 columns">
+                <input tabindex=3 id="development" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" step="5" title="development time in minutes">
+                <small class="error">How long is development ?</small>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-more tiny">+30"</a>
+            </div>
+
+            <div class="show-for-medium-up small-1 medium-1 columns">
+                <a href="#" class="1-more tiny">+60"</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="show-for-medium-up small-1 medium-1 columns">
+                <a href="#" class="1-less tiny">-60"</a>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-less tiny">-30"</a>
+            </div>
+
+            <div class="small-3 medium-2 columns">
+                <label for="bleach" class="right">Bleach</label>
+            </div>
+
+            <div class="small-4 medium-4 columns">
+                <input tabindex=4 id="bleach" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" step="5" title="bleaching time in minutes">
+                <small class="error">How long is bleaching ?</small>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-more tiny">+30"</a>
+            </div>
+
+            <div class="show-for-medium-up small-1 medium-1 columns">
+                <a href="#" class="1-more tiny">+60"</a>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="show-for-medium-up medium-1 columns">
                 <a href="#" class="1-less tiny">-60"</a>
             </div>
@@ -96,12 +150,12 @@
             </div>
 
             <div class="small-3 medium-2 columns">
-                <label for="stop" class="right">Stop for</label>
+                <label for="wash" class="right">Rinse for</label>
             </div>
 
             <div class="small-4 medium-4 columns">
-                <input tabindex=3 id="stop" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="stop bath duration, in minutes">
-                <small class="error">How long is the stop bath ?</small>
+                <input tabindex=5 id="wash" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="wash duration, in minutes">
+                <small class="error">How long is rinsing ?</small>
             </div>
 
             <div class="small-1 medium-1 columns">
@@ -127,7 +181,7 @@
             </div>
 
             <div class="small-4 medium-4 columns">
-                <input tabindex=4 id="fix" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="fixing duration, in minutes">
+                <input tabindex=6 id="fix" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="fixing duration, in minutes">
                 <small class="error">How long is fixing ?</small>
             </div>
 
@@ -150,12 +204,39 @@
             </div>
 
             <div class="small-3 medium-2 columns">
-                <label for="wash" class="right">Wash for</label>
+                <label for="rinse" class="right">Rinse for</label>
             </div>
 
             <div class="small-4 medium-4 columns">
-                <input tabindex=5 id="wash" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="wash duration, in minutes">
-                <small class="error">How long is washing ?</small>
+                <input tabindex=7 id="rinse" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="wash duration, in minutes">
+                <small class="error">How long is rinsing ?</small>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-more tiny">+30"</a>
+            </div>
+
+            <div class="show-for-medium-up medium-1 columns">
+                <a href="#" class="1-more tiny">+60"</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="show-for-medium-up medium-1 columns">
+                <a href="#" class="1-less tiny">-60"</a>
+            </div>
+
+            <div class="small-1 medium-1 columns">
+                <a href="#" class="0.5-less tiny">-30"</a>
+            </div>
+
+            <div class="small-3 medium-2 columns">
+                <label for="stabilize" class="right">Stabilize for</label>
+            </div>
+
+            <div class="small-4 medium-4 columns">
+                <input tabindex=8 id="stabilize" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="stabilizing duration, in minutes">
+                <small class="error">How long is stabilizing ?</small>
             </div>
 
             <div class="small-1 medium-1 columns">
@@ -169,7 +250,7 @@
 
         <div class="row">
             <div class="small-4 medium-6 left columns">
-                <button tabindex=6 class="expand black" id="start" type="submit">Go !</button>
+                <button tabindex=9 class="expand green" id="start" type="submit">Go !</button>
             </div>
             <div class="small-2 medium-4 columns">
                 <button class="right secondary" type="submit" id="resetForm">Reset</button>
@@ -186,21 +267,34 @@
             <button class="small-3 small-pull-1 columns black" type="submit" id="resetInterval">Reset</button>
         </div>
         <div class="row" id="runningCounter">
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Warming: </h3>
+            <h1 class="small-7 medium-7 columns small-text-right" id="warmTimer"></h1>
+        </div>
+        <div class="row">
             <h3 class="small-3 medium-3 columns subheader medium-text-right">Development: </h3>
             <h1 class="small-7 medium-7 columns small-text-right" id="devTimer"></h1>
         </div>
         <div class="row">
-            <h3 class="small-3 medium-3 columns subheader medium-text-right">Stopping: </h3>
-            <h1 class="small-7 medium-7 columns small-text-right" id="stopTimer"></h1>
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Bleach: </h3>
+            <h1 class="small-7 medium-7 columns small-text-right" id="bleachTimer"></h1>
         </div>
         <div class="row">
-            <h3 class="small-3 medium-3 columns subheader medium-text-right">Fixing: </h3>
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Rinse: </h3>
+            <h1 class="small-7 medium-7 columns small-text-right" id="washTimer"></h1>
+        </div>
+        <div class="row">
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Fix: </h3>
             <h1 class="small-7 medium-7 columns small-text-right" id="fixTimer"></h1>
         </div>
         <div class="row">
-            <h3 class="small-3 medium-3 columns subheader medium-text-right">Washing: </h3>
-            <h1 class="small-7 medium-7 columns small-text-right" id="washTimer"></h1>
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Rinse: </h3>
+            <h1 class="small-7 medium-7 columns small-text-right" id="rinseTimer"></h1>
         </div>
+        <div class="row">
+            <h3 class="small-3 medium-3 columns subheader medium-text-right">Stabilize: </h3>
+            <h1 class="small-7 medium-7 columns small-text-right" id="stabTimer"></h1>
+        </div>
+
     </section>
     <div class="footer row">
         <div class="small-12 columns text-center">Made by Jerome. Like this ? <a target=_blank href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4ZH5A85ZKJXG2">Buy me film !</a> Found a bug ? <span id="contact"></span>
@@ -236,23 +330,29 @@
   };
 </script>
 
-<!-- <script src="//cdn.jsdelivr.net/foundation/5.4.7/js/foundation.min.js"></script> -->
-<script src="js/min.min.js"></script>
+<script src="//cdn.jsdelivr.net/foundation/5.4.7/js/foundation.min.js"></script>
+<!-- <script src="js/min.min.js"></script> -->
 <script>
 var alertTimer, counter, element, seconds, start, remaining;
-var dev = getUrlParameter('dev') || "";
+var warm = getUrlParameter('warm') || "";
 var invert = getUrlParameter('invert') || "";
-var fix = getUrlParameter('fix') || "";
-var stop = getUrlParameter('stop') || "";
+var dev = getUrlParameter('dev') || "";
+var bleach = getUrlParameter('bleach') || "";
 var wash = getUrlParameter('wash') || "";
+var fix = getUrlParameter('fix') || "";
+var rinse = getUrlParameter('rinse') || "";
+var stab = getUrlParameter('stabilize') || "";
 
-$("#development").val(dev);
+$("#warming").val(warm);
 $("#inversion").val(invert);
-$("#fix").val(fix);
-$("#stop").val(stop);
+$("#development").val(dev);
+$("#bleach").val(bleach);
 $("#wash").val(wash);
+$("#fix").val(fix);
+$("#rinse").val(rinse);
+$("#stabilize").val(stab);
 
-$("#development").focus();
+$("#warming").focus();
 
 $("#contact").html(gen_mail_to_link('xxxxxxxxxxxxxxx', 'gmail.com', 'Let me know'));
 
@@ -330,6 +430,7 @@ function reset() {
     clearInterval(counter);
     clearTimeout(alertTimer);
     dev = invert = stop = wash = fix = seconds = 0;
+
     element = null;
     running = false;
     $(".timer").hide();
@@ -408,32 +509,40 @@ $('#minutes')
 
         url = window.location.toString();
         url = url.substring(0, url.indexOf('?'));
-        url += "?dev=" + $("#development").val() + "&invert=" + $("#inversion").val() + "&stop=" + $("#stop").val() + "&fix=" + $("#fix").val() + "&wash=" + $("#wash").val();
+        url += "?warm=" + $("#warming").val() 
+            + "&invert=" + $("#inversion").val() 
+            + "&dev=" + $("#development").val() 
+            + "&bleach=" + $("#bleach").val() 
+            + "&wash=" + $("#wash").val() 
+            + "&fix=" + $("#fix").val()
+            + "&rinse=" + $("#rinse").val()
+            + "&stabilize=" + $("#stabilize").val();
+
         if (Modernizr.history){
             window.history.pushState("recipe", "dev", url);
         }
-
-        dev = parseFloat($("#development").val()) * 60;
+        
+        warm = parseFloat($("#warming").val()) * 60;
         invert = parseFloat($("#inversion").val()) * 60;
-        fix = parseFloat($("#fix").val()) * 60;
-        stop = parseFloat($("#stop").val()) * 60;
+        dev = parseFloat($("#development").val()) * 60;
+        bleach = parseFloat($("#bleach").val()) * 60;
         wash = parseFloat($("#wash").val()) * 60;
+        fix = parseFloat($("#fix").val()) * 60;
+        rinse = parseFloat($("#rinse").val()) * 60;
+        stabilize = parseFloat($("#stabilize").val()) * 60;
 
         $("#minutes").hide();
         $(".timer").show();
+        $("#warmTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
         $("#devTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
-        $("#stopTimer").html(parseInt(stop / 60).pad() + ":" + (stop % 60).pad());
-        $("#fixTimer").html(parseInt(fix / 60).pad() + ":" + (fix % 60).pad());
-        $("#washTimer").html(parseInt(wash / 60).pad() + ":" + (wash % 60).pad());
+        $("#bleachTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
+        $("#washTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
+        $("#fixTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
+        $("#rinseTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
+        $("#stabTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
 
-        steps = ["#devTimer", dev, "#stopTimer", stop, "#fixTimer", fix, "#washTimer", wash];
+        steps = ["#warmTimer", warm, "#devTimer", dev, "#bleachTimer", bleach, "#washTimer", wash, "#fixTimer", fix, "#rinseTimer", rinse, "#stabTimer", stabilize];
         counter = setInterval(timer, 1000);
-
-        $("#invertAlert").html("invert...");
-        $("#invertAlert").visible();
-        start = new Date().getTime();
-        remaining = 30000;
-        alertTimer = setTimeout(clear, remaining); //first 30sec
 
         running = true;
 

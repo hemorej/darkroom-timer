@@ -150,60 +150,6 @@
             </div>
 
             <div class="small-3 medium-2 columns">
-                <label for="wash" class="right">Rinse for</label>
-            </div>
-
-            <div class="small-4 medium-4 columns">
-                <input tabindex=5 id="wash" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="wash duration, in minutes">
-                <small class="error">How long is rinsing ?</small>
-            </div>
-
-            <div class="small-1 medium-1 columns">
-                <a href="#" class="0.5-more tiny">+30"</a>
-            </div>
-
-            <div class="show-for-medium-up medium-1 columns">
-                <a href="#" class="1-more tiny">+60"</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="show-for-medium-up medium-1 columns">
-                <a href="#" class="1-less tiny">-60"</a>
-            </div>
-
-            <div class="small-1 medium-1 columns">
-                <a href="#" class="0.5-less tiny">-30"</a>
-            </div>
-
-            <div class="small-3 medium-2 columns">
-                <label for="fix" class="right">Fix for</label>
-            </div>
-
-            <div class="small-4 medium-4 columns">
-                <input tabindex=6 id="fix" type="number" placeholder="minutes" required pattern="[0-9]*" data-abide-validator="numberValidator" title="fixing duration, in minutes">
-                <small class="error">How long is fixing ?</small>
-            </div>
-
-            <div class="small-1 medium-1 columns">
-                <a href="#" class="0.5-more tiny">+30"</a>
-            </div>
-
-            <div class="show-for-medium-up medium-1 columns">
-                <a href="#" class="1-more tiny">+60"</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="show-for-medium-up medium-1 columns">
-                <a href="#" class="1-less tiny">-60"</a>
-            </div>
-
-            <div class="small-1 medium-1 columns">
-                <a href="#" class="0.5-less tiny">-30"</a>
-            </div>
-
-            <div class="small-3 medium-2 columns">
                 <label for="rinse" class="right">Rinse for</label>
             </div>
 
@@ -280,14 +226,6 @@
         </div>
         <div class="row">
             <h3 class="small-3 medium-3 columns subheader medium-text-right">Rinse: </h3>
-            <h1 class="small-7 medium-7 columns small-text-right" id="washTimer"></h1>
-        </div>
-        <div class="row">
-            <h3 class="small-3 medium-3 columns subheader medium-text-right">Fix: </h3>
-            <h1 class="small-7 medium-7 columns small-text-right" id="fixTimer"></h1>
-        </div>
-        <div class="row">
-            <h3 class="small-3 medium-3 columns subheader medium-text-right">Rinse: </h3>
             <h1 class="small-7 medium-7 columns small-text-right" id="rinseTimer"></h1>
         </div>
         <div class="row">
@@ -338,8 +276,6 @@ var warm = getUrlParameter('warm') || "";
 var invert = getUrlParameter('invert') || "";
 var dev = getUrlParameter('dev') || "";
 var bleach = getUrlParameter('bleach') || "";
-var wash = getUrlParameter('wash') || "";
-var fix = getUrlParameter('fix') || "";
 var rinse = getUrlParameter('rinse') || "";
 var stab = getUrlParameter('stabilize') || "";
 
@@ -347,8 +283,6 @@ $("#warming").val(warm);
 $("#inversion").val(invert);
 $("#development").val(dev);
 $("#bleach").val(bleach);
-$("#wash").val(wash);
-$("#fix").val(fix);
 $("#rinse").val(rinse);
 $("#stabilize").val(stab);
 
@@ -513,8 +447,6 @@ $('#minutes')
             + "&invert=" + $("#inversion").val() 
             + "&dev=" + $("#development").val() 
             + "&bleach=" + $("#bleach").val() 
-            + "&wash=" + $("#wash").val() 
-            + "&fix=" + $("#fix").val()
             + "&rinse=" + $("#rinse").val()
             + "&stabilize=" + $("#stabilize").val();
 
@@ -526,8 +458,6 @@ $('#minutes')
         invert = parseFloat($("#inversion").val()) * 60;
         dev = parseFloat($("#development").val()) * 60;
         bleach = parseFloat($("#bleach").val()) * 60;
-        wash = parseFloat($("#wash").val()) * 60;
-        fix = parseFloat($("#fix").val()) * 60;
         rinse = parseFloat($("#rinse").val()) * 60;
         stabilize = parseFloat($("#stabilize").val()) * 60;
 
@@ -536,12 +466,10 @@ $('#minutes')
         $("#warmTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
         $("#devTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
         $("#bleachTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
-        $("#washTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
-        $("#fixTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
         $("#rinseTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
         $("#stabTimer").html(parseInt(dev / 60).pad() + ":" + (dev % 60).pad());
 
-        steps = ["#warmTimer", warm, "#devTimer", dev, "#bleachTimer", bleach, "#washTimer", wash, "#fixTimer", fix, "#rinseTimer", rinse, "#stabTimer", stabilize];
+        steps = ["#warmTimer", warm, "#devTimer", dev, "#bleachTimer", bleach, "#rinseTimer", rinse, "#stabTimer", stabilize];
         counter = setInterval(timer, 1000);
 
         running = true;

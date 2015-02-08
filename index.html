@@ -239,7 +239,7 @@
 <!-- <script src="//cdn.jsdelivr.net/foundation/5.4.7/js/foundation.min.js"></script> -->
 <script src="js/min.min.js"></script>
 <script>
-var alertTimer, counter, element, seconds, start, remaining;
+var alertTimer, counter, element, seconds, start, remaining, totalTime;
 var dev = getUrlParameter('dev') || "";
 var invert = getUrlParameter('invert') || "";
 var fix = getUrlParameter('fix') || "";
@@ -379,8 +379,10 @@ function timer() {
         $("#invertAlert").visible();
     }
 
+    totalTime = totalTime - 1;
     var time = parseInt(seconds / 60).pad() + ":" + (seconds % 60).pad();
-    document.title = '[ '+time+ ' ]';
+    var processTime = parseInt(totalTime / 60).pad() + ":" + (totalTime % 60).pad();
+    document.title = '[ '+processTime+ ' ]';
     $(element).html(time);
     
 }
@@ -418,6 +420,7 @@ $('#minutes')
         fix = parseFloat($("#fix").val()) * 60;
         stop = parseFloat($("#stop").val()) * 60;
         wash = parseFloat($("#wash").val()) * 60;
+        totalTime = dev + fix + stop + wash;
 
         $("#minutes").hide();
         $(".timer").show();

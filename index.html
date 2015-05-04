@@ -329,7 +329,7 @@ function reset() {
     $('input').val("");
     clearInterval(counter);
     clearTimeout(alertTimer);
-    dev = invert = stop = wash = fix = seconds = 0;
+    dev = invert = stop = wash = fix = seconds = totalTime = 0;
     element = null;
     running = false;
     $(".timer").hide();
@@ -353,16 +353,21 @@ function timer() {
     }
 
     seconds = seconds - 1;
+    totalTime = totalTime - 1;
+
     if (seconds < 0) {
         clearInterval(counter);
         next = steps.splice(0, 2);
         $(element).parent()[0].removeAttribute("id");
-        seconds = next[1];
+        totalTime = totalTime + 1;
+        seconds = next[1]; 
         element = next[0];
         $(element).parent()[0].setAttribute("id", "runningCounter");
 
         counter = setInterval(timer, 1000);
         running = true;
+
+        $("#pause").click();
     }
 
     if (seconds % invert == 0 && element.localeCompare("#devTimer") == 0) {
@@ -379,9 +384,8 @@ function timer() {
         $("#invertAlert").visible();
     }
 
-    totalTime = totalTime - 1;
-    var time = parseInt(seconds / 60).pad() + ":" + (seconds % 60).pad();
-    var processTime = parseInt(totalTime / 60).pad() + ":" + (totalTime % 60).pad();
+    var time = Math.floor(seconds / 60).pad() + ":" + (seconds % 60).pad();
+    var processTime = Math.floor(totalTime / 60).pad() + ":" + (totalTime % 60).pad();
     document.title = '[ '+processTime+ ' ]';
     $(element).html(time);
     

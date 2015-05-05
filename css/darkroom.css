@@ -718,18 +718,14 @@ dialog::backdrop {
   margin-top: 100px;
 }
 
-#invertAlert {
+#notice {
   visibility: hidden;
 }
 
-.timer {
+.timer{
   display: none;
 }
 
-#invertAlert {
-  font-variant: small-caps;
-  font-size: 1.2rem;
-}
 #runningCounter h1 {color: black}
 .timer > .row h1 {color: #9A9A9A}
 

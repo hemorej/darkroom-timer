@@ -179,7 +179,7 @@
 
     <section class="timer">
         <div class="row">
-            <h2 data-alert id="invertAlert" class="medium-push-1 medium-8 columns alert-box text-center warning">Get ready</h2>
+            <h3 data-alert id="notice" class="medium-push-1 medium-8 columns alert-box text-center">Get ready</h3>
         </div>
         <div class="row">
             <button class="small-3 small-push-1 columns secondary" type="submit" id="pause">Pause</button>
@@ -239,12 +239,13 @@
 <!-- <script src="//cdn.jsdelivr.net/foundation/5.4.7/js/foundation.min.js"></script> -->
 <script src="js/min.min.js"></script>
 <script>
-var alertTimer, counter, element, seconds, start, remaining, totalTime;
+var alertTimer, counter, element, seconds, start, remaining, totalTime, autoPause;
 var dev = getUrlParameter('dev') || "";
 var invert = getUrlParameter('invert') || "";
 var fix = getUrlParameter('fix') || "";
 var stop = getUrlParameter('stop') || "";
 var wash = getUrlParameter('wash') || "";
+var restoredMessage = "";
 
 $("#development").val(dev);
 $("#inversion").val(invert);
@@ -288,22 +289,7 @@ $(document).foundation({
 });
 
 $("#pause").click(function() {
-    
-    if (running == true) {
-        clearInterval(counter);
-        clearTimeout(alertTimer);
-        running = false;
-        $("#pause").html("Resume");
-        remaining = remaining - (new Date().getTime() - start);
-    } else {
-        counter = setInterval(timer, 1000);
-        if (alertTimer != null) {
-            start = new Date().getTime();
-            alertTimer = setTimeout(clear, remaining);
-        }
-        running = true;
-        $("#pause").html("Pause");
-    }
+    togglePause();
 });
 
 $(".tiny").click(function(e) {
@@ -367,21 +353,26 @@ function timer() {
         counter = setInterval(timer, 1000);
         running = true;
 
-        $("#pause").click();
+        //wait between steps, auto resume
+        togglePause("timer is paused (will auto-resume)");
+        autoPause = setTimeout(togglePause, 5000);
+        return;
     }
 
     if (seconds % invert == 0 && element.localeCompare("#devTimer") == 0) {
         start = new Date().getTime();
         remaining = 5000;
-        $("#invertAlert").html("invert...");
+        $("#notice").toggleClass("warning");
+        $("#notice").html("invert...");
+        $("#notice").visible();
         alertTimer = setInterval(clear, remaining);
     }
 
     if (seconds % invert == 3 && element.localeCompare("#devTimer") == 0 && seconds > 3) {
-        if(Modernizr.audio && $("#invertAlert").css('visibility') != 'visible'){
+        if(Modernizr.audio && $("#notice").css('visibility') != 'visible'){
             $("#beep").get(0).play();
         }
-        $("#invertAlert").visible();
+        $("#notice").visible();
     }
 
     var time = Math.floor(seconds / 60).pad() + ":" + (seconds % 60).pad();
@@ -394,8 +385,9 @@ function timer() {
 function clear() {
     clearTimeout(alertTimer);
     alertTimer = null;
-    $("#invertAlert").invisible();
-    $("#invertAlert").html("get ready");
+    $("#notice").invisible();
+    $("#notice").html("Get ready");
+    $("#notice").removeClass("warning");
 }
 
 Number.prototype.pad = function(size) {
@@ -436,8 +428,9 @@ $('#minutes')
         steps = ["#devTimer", dev, "#stopTimer", stop, "#fixTimer", fix, "#washTimer", wash];
         counter = setInterval(timer, 1000);
 
-        $("#invertAlert").html("invert...");
-        $("#invertAlert").visible();
+        $("#notice").toggleClass("warning");
+        $("#notice").html("invert...");
+        $("#notice").visible();
         start = new Date().getTime();
         remaining = 30000;
         alertTimer = setTimeout(clear, remaining); //first 30sec
@@ -457,7 +450,7 @@ $('#minutes')
 
 $("html").keyup(function(e) {
     if(e.keyCode == 32 && $(".timer").isShown()){
-      $("#pause").click();
+      togglePause();
       e.preventDefault();
       return false;
     }
@@ -467,6 +460,59 @@ $("html").keyup(function(e) {
       return false;
     }
 });
+
+function togglePause(message){
+
+    // is the timer finished ? no need to do anything
+    if(totalTime <= 0){ return false; }
+
+    // are we pausing during inversion ? need to restore state
+    if($("#notice").hasClass("warning")){
+        $("#notice").removeClass("warning");
+        restoredMessage = $("#notice").html();
+    }
+
+    // auto pause has a different message than a user initiated pause
+    message = typeof message !== 'undefined' ? message : "timer is paused";
+    $("#notice").html(message);
+
+    if (running == true) {
+        clearInterval(counter);
+        clearTimeout(alertTimer);
+        running = false;
+        $("#pause").html("Resume");
+
+        // remaining time to show notice if we paused during an alert/notice
+        remaining = remaining - (new Date().getTime() - start);
+
+        $("#notice").visible();
+    } else {
+        counter = setInterval(timer, 1000);
+        if (alertTimer != null) {
+            start = new Date().getTime();
+            alertTimer = setTimeout(clear, remaining);
+        }
+        running = true;
+
+        $("#pause").html("Pause");
+
+        if(restoredMessage.length){
+            $("#notice").html(restoredMessage);
+            $("#notice").addClass("warning");
+            restoredMessage = "";
+        }
+        else{
+            $("#notice").html("Get Ready");
+            $("#notice").invisible();
+        }
+
+        // did we unpause an auto-pause ? Getting crazy !
+        if(autoPause){
+            clearTimeout(autoPause);
+            autoPause = null;
+        }
+    }
+}
 
 function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1);

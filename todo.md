@@ -1,1 +1,3 @@
-DONE :D
+TODO:
+
+- inversion alert for fixing too

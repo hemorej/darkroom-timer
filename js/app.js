@@ -143,10 +143,12 @@ function timer() {
     if (seconds % invert == 0 && element.localeCompare("#devTimer") == 0) {
         start = new Date().getTime();
         remaining = 5000;
-        $("#notice").toggleClass("warning");
-        $("#notice").html("invert...");
 
-        alertTimer = setInterval(clear, remaining);
+        // should I prepare the next timer ?
+        if(seconds != 0 && seconds+invert != dev){
+          invertAlert();
+          alertTimer = setInterval(clear, remaining);
+        }
     }
 
     if (seconds % invert == 3 && element.localeCompare("#devTimer") == 0 && seconds > 3) {
@@ -209,9 +211,8 @@ $('#minutes')
         steps = ["#devTimer", dev, "#stopTimer", stop, "#fixTimer", fix, "#washTimer", wash];
         counter = setInterval(timer, 1000);
 
-        $("#notice").toggleClass("warning");
-        $("#notice").html("invert...");
-        $("#notice").visible();
+        invertAlert();
+        
         start = new Date().getTime();
         remaining = 30000;
         alertTimer = setTimeout(clear, remaining); //first 30sec
@@ -284,7 +285,7 @@ function togglePause(message){
         }
         else{
             $("#notice").html("Get Ready");
-            $("#notice").invisible();
+            $("#notice").visibilityToggle();
         }
 
         // did we unpause an auto-pause ? Getting crazy !
@@ -293,6 +294,12 @@ function togglePause(message){
             autoPause = null;
         }
     }
+}
+
+function invertAlert(){
+  $("#notice").toggleClass("warning");
+  $("#notice").html("invert...");
+  $("#notice").visible();
 }
 
 function getUrlParameter(sParam) {

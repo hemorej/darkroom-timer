@@ -36,7 +36,7 @@ $("#wash").val(wash);
 
 $("#development").focus();
 
-$("#contact").html(gen_mail_to_link('xxxxxxxxxxxxxxx', 'gmail.com', 'Let me know'));
+$("#contact").html(gen_mail_to_link('xxx', 'gmail.com', 'Let me know'));
 
 var running = false;
 var steps = new Array();

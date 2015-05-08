@@ -725,17 +725,19 @@ dialog::backdrop {
 .timer{
   display: none;
 }
-
 #runningCounter h1 {color: black}
 .timer > .row h1 {color: #9A9A9A}
 
 :-webkit-full-screen h1, :-webkit-full-screen h3{font-size:55px}
+:-webkit-full-screen h2{font-size:35px}
 :-webkit-full-screen .timer {margin-top:12%}
 :-webkit-full-screen .title {visibility: hidden}
 :-moz-full-screen h1, :-moz-full-screen h3{font-size:55px}
+:-moz-full-screen h2{font-size:35px}
 :-moz-full-screen .timer {margin-top:12%}
 :-moz-full-screen .title {visibility: hidden}
 :-ms-full-screen h1, :-ms-full-screen h3{font-size:55px}
+:-ms-full-screen h2{font-size:35px}
 :-ms-full-screen .timer {margin-top:12%}
 :-ms-full-screen .title {visibility: hidden}
 :-webkit-full-screen html{background-color: #DCDCDC}

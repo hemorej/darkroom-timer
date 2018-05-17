@@ -41,34 +41,6 @@ $("#contact").html(gen_mail_to_link('xxx', 'gmail.com', 'Let me know'));
 var running = false;
 var steps = new Array();
 
-$(document).foundation({
-    abide: {
-        validators: {
-            inversionValidator: function(el, required, parent) {
-                dev = parseFloat($("#development").val()) * 60;
-                invert = parseFloat(el.value) * 60;
-                if (isNaN(invert) || invert <= 0) {
-                    $("#invert-error").html("How often is inversion ?");
-                    return false;
-                }
-
-                if (dev < invert) {
-                    $("#invert-error").html("Inversion time more than development ?");
-                    return false;
-                }
-                return true;
-            },
-            numberValidator: function(el, required, parent) {
-                number = parseFloat(el.value);
-                if ((isNaN(number) || (number <= 0)) && required) {
-                    return false;
-                }
-                return true;
-            }
-        }
-    }
-});
-
 $("#pause").click(function() {
     togglePause();
 });
@@ -92,9 +64,10 @@ $(".tiny").click(function(e) {
 $("#resetForm").click(reset);
 $("#resetInterval").click(reset);
 
-function reset() {
+function reset()
+{
     $('input').val("");
-    clearInterval(counter);
+    window.clearInterval(counter);
     clearTimeout(alertTimer);
     dev = invert = stop = wash = fix = seconds = totalTime = 0;
     element = null;
@@ -131,12 +104,11 @@ function timer() {
         element = next[0];
         $(element).parent()[0].setAttribute("id", "runningCounter");
 
-        counter = setInterval(timer, 1000);
+        counter = window.setInterval(timer, 1000);
         running = true;
 
         //wait between steps, auto resume
-        togglePause("timer is paused (will auto-resume)");
-        autoPause = setTimeout(togglePause, 10000);
+        togglePause("timer is paused (press space to resume)");
         return;
     }
 
@@ -145,9 +117,9 @@ function timer() {
         remaining = 5000;
 
         // should I prepare the next timer ?
-        if(seconds != 0 && seconds+invert != dev){
+        if(seconds != 0 && dev-seconds > 59){
           invertAlert();
-          alertTimer = setInterval(clear, remaining);
+          alertTimer = window.setInterval(clear, remaining);
         }
     }
 
@@ -181,11 +153,8 @@ Number.prototype.pad = function(size) {
     return s;
 }
 
-$('#minutes')
-    .on('invalid.fndtn.abide', function() {
-        var invalid_fields = $(this).find('[data-invalid]');
-    })
-    .on('valid.fndtn.abide', function() {
+$('#minutes').submit(function(e) {
+        e.preventDefault();
 
         url = window.location.toString();
         url = url.substring(0, url.indexOf('?'));
@@ -209,7 +178,7 @@ $('#minutes')
         $("#washTimer").html(parseInt(wash / 60).pad() + ":" + (wash % 60).pad());
 
         steps = ["#devTimer", dev, "#stopTimer", stop, "#fixTimer", fix, "#washTimer", wash];
-        counter = setInterval(timer, 1000);
+        counter = window.setInterval(timer, 1000);
 
         invertAlert();
         
@@ -269,7 +238,7 @@ function togglePause(message){
 
         $("#notice").visible();
     } else {
-        counter = setInterval(timer, 1000);
+        counter = window.setInterval(timer, 1000);
         if (alertTimer != null) {
             start = new Date().getTime();
             alertTimer = setTimeout(clear, remaining);
@@ -287,18 +256,12 @@ function togglePause(message){
             $("#notice").html("Get Ready");
             $("#notice").visibilityToggle();
         }
-
-        // did we unpause an auto-pause ? Getting crazy !
-        if(autoPause){
-            clearTimeout(autoPause);
-            autoPause = null;
-        }
     }
 }
 
 function invertAlert(){
   $("#notice").toggleClass("warning");
-  $("#notice").html("invert...");
+  $("#notice").html("inversion...");
   $("#notice").visible();
 }
 

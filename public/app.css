@@ -502,19 +502,6 @@ small {
   }
 }
 
-dialog::backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: black;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: auto;
-  display: none;
-  left: 0;
-}
-
 .footer {
   margin-top: 100px;
 }
@@ -523,11 +510,7 @@ dialog::backdrop {
   visibility: hidden;
 }
 
-.timer{
-  display: none;
-}
 #current h1 {color: black}
-.timer > .row h1 {color: #9A9A9A}
 
 :-webkit-full-screen h1, :-webkit-full-screen h3{font-size:55px}
 :-webkit-full-screen h2{font-size:35px}

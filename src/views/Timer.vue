@@ -1,109 +1,121 @@
 <template>
-  <div class="grid-container">
-    <h1>Online Darkroom Timer <small>beta</small></h1>
-    <h2 class="subheader">{{ timeRemaining }}</h2>
-    <div class="grid-x grid-margin-x">
-      <div
-        class="cell medium-6 medium-offset-3 text-center"
-        :class="{
-          'warning callout': getReady == true,
-          'primary callout': running == false
-        }"
-      >
-        <div class="subheader">
-          <div v-show="getReady == true">invert tank...</div>
-          <div v-show="running == false">timer is paused</div>
-          <div
-            class="blank callout"
-            v-show="running == true && getReady == false"
-          >
-            blank
+  <fullscreen :background="'#dcdcdc'" :fullscreen.sync="fullscreen">
+    <div
+      class="grid-container"
+      v-shortkey.once="{ space: ['space'], esc: ['esc'], f: ['f'] }"
+      @shortkey="kbHandler"
+    >
+      <div class="grid-x grid-margin-x">
+        <div class="cell medium-6 medium-offset-3 text-center">
+          <h1>
+            Online Darkroom Timer
+            <span class="subheader">{{ timeRemaining }}</span>
+          </h1>
+        </div>
+      </div>
+      <div class="grid-x grid-margin-x">
+        <div
+          class="cell medium-6 medium-offset-3 text-center"
+          :class="{
+            'warning callout': getReady == true,
+            'primary callout': running == false
+          }"
+        >
+          <div class="subheader">
+            <div v-show="getReady == true">invert tank...</div>
+            <div v-show="running == false">timer is paused</div>
+            <div
+              class="blank callout"
+              v-show="running == true && getReady == false"
+            >
+              blank
+            </div>
           </div>
         </div>
       </div>
+      <div class="grid-x grid-margin-x">
+        <div class="cell medium-1 medium-offset-3">
+          <button class="left black" @click="reset">
+            Reset
+          </button>
+        </div>
+        <div class="cell medium-4 medium-offset-1">
+          <button class="expanded secondary" @click="pause">
+            <span v-if="running == true">Pause</span>
+            <span v-else>Resume</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x margin-top">
+        <div class="cell medium-3 medium-offset-1">
+          <h3 class="subheader medium-text-right">Development:</h3>
+        </div>
+
+        <div class="cell medium-5">
+          <h1
+            :class="[
+              this.step == 'development' ? 'current' : 'subheader',
+              'small-text-right'
+            ]"
+          >
+            {{ clockCountdown('development') }}
+          </h1>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x">
+        <div class="cell medium-3 medium-offset-1">
+          <h3 class="subheader medium-text-right">Stopping:</h3>
+        </div>
+
+        <div class="cell medium-5">
+          <h1
+            :class="[
+              this.step == 'stop' ? 'current' : 'subheader',
+              'small-text-right'
+            ]"
+          >
+            {{ clockCountdown('stop') }}
+          </h1>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x">
+        <div class="cell medium-3 medium-offset-1">
+          <h3 class="subheader medium-text-right">Fixing:</h3>
+        </div>
+
+        <div class="cell medium-5">
+          <h1
+            :class="[
+              this.step == 'fix' ? 'current' : 'subheader',
+              'small-text-right'
+            ]"
+          >
+            {{ clockCountdown('fix') }}
+          </h1>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x">
+        <div class="cell medium-3 medium-offset-1">
+          <h3 class="subheader medium-text-right">Washing:</h3>
+        </div>
+
+        <div class="cell medium-5">
+          <h1
+            :class="[
+              this.step == 'wash' ? 'current' : 'subheader',
+              'small-text-right'
+            ]"
+          >
+            {{ clockCountdown('wash') }}
+          </h1>
+        </div>
+      </div>
     </div>
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-1 medium-offset-3">
-        <button class="left black" @click="reset">
-          Reset
-        </button>
-      </div>
-      <div class="cell medium-4 medium-offset-1">
-        <button tabindex="6" class="expanded secondary" @click="pause">
-          <span v-if="running == true">Pause</span>
-          <span v-else>Resume</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="grid-x grid-margin-x margin-top">
-      <div class="cell medium-3 medium-offset-1">
-        <h3 class="subheader medium-text-right">Development:</h3>
-      </div>
-
-      <div class="cell medium-5">
-        <h1
-          :class="[
-            this.step == 'development' ? 'current' : 'subheader',
-            'small-text-right'
-          ]"
-        >
-          {{ clockCountdown('development') }}
-        </h1>
-      </div>
-    </div>
-
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-3 medium-offset-1">
-        <h3 class="subheader medium-text-right">Stopping:</h3>
-      </div>
-
-      <div class="cell medium-5">
-        <h1
-          :class="[
-            this.step == 'stop' ? 'current' : 'subheader',
-            'small-text-right'
-          ]"
-        >
-          {{ clockCountdown('stop') }}
-        </h1>
-      </div>
-    </div>
-
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-3 medium-offset-1">
-        <h3 class="subheader medium-text-right">Fixing:</h3>
-      </div>
-
-      <div class="cell medium-5">
-        <h1
-          :class="[
-            this.step == 'fix' ? 'current' : 'subheader',
-            'small-text-right'
-          ]"
-        >
-          {{ clockCountdown('fix') }}
-        </h1>
-      </div>
-    </div>
-
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-3 medium-offset-1">
-        <h3 class="subheader medium-text-right">Washing:</h3>
-      </div>
-
-      <div class="cell medium-5">
-        <h1
-          :class="[
-            this.step == 'wash' ? 'current' : 'subheader',
-            'small-text-right'
-          ]"
-        >
-          {{ clockCountdown('wash') }}
-        </h1>
-      </div>
-    </div>
-  </div>
+  </fullscreen>
 </template>
 
 <script>
@@ -126,6 +138,7 @@ export default {
       running: true,
       counter: null,
       alertTimer: null,
+      fullscreen: false,
       development: parseInt(localStorage.getItem('development')),
       inversion: parseInt(localStorage.getItem('inversion')),
       stop: parseInt(localStorage.getItem('stop')),
@@ -206,6 +219,16 @@ export default {
     clear() {
       clearTimeout(this.alertTimer)
       this.getReady = false
+    },
+    kbHandler(event) {
+      switch (event.srcKey) {
+        case 'space':
+          return this.pause()
+        case 'esc':
+          return this.reset()
+        case 'f':
+          this.fullscreen = !this.fullscreen
+      }
     }
   },
   created() {

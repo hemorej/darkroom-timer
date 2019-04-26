@@ -107,11 +107,28 @@
 
       <div class="grid-x grid-margin-x margin-top">
         <div class="cell medium-1 medium-offset-3">
-          <button class="left secondary" @click="reset">
+          <button class="hollow button left warning" @click="reset">
             Reset
           </button>
         </div>
-        <div class="cell medium-4 medium-offset-1">
+        <div class="cell medium-1">
+          <button
+            :class="[{ disabled: !canSave }, 'button hollow left']"
+            @click="saveTime"
+          >
+            Save
+          </button>
+        </div>
+        <div class="cell medium-1">
+          <button
+            v-show="hasSavedTimes"
+            class="hollow button left"
+            @click="savedTimes"
+          >
+            Times
+          </button>
+        </div>
+        <div class="cell medium-4">
           <button tabindex="6" class="expanded primary">Go !</button>
         </div>
       </div>
@@ -144,6 +161,33 @@ export default {
     },
     reset() {
       localStorage.clear()
+    },
+    saveTime() {
+      // localStorage.setItem('recipe', JSON.stringify({development: this.development, fix: this.fix, inversion: this.inversion, stop: this.stop, wash: this.wash}))
+    },
+    savedTimes() {
+      // this.$router.push({ name: 'times' })
+    }
+  },
+  computed: {
+    hasSavedTimes() {
+      if (JSON.parse(localStorage.getItem('recipes'))) return true
+
+      return false
+    },
+    canSave() {
+      return (
+        this.development != null &&
+        this.inversion != null &&
+        this.stop != null &&
+        this.fix != null &&
+        this.wash != null &&
+        this.development != 0 &&
+        this.inversion != 0 &&
+        this.stop != 0 &&
+        this.fix != 0 &&
+        this.wash != 0
+      )
     }
   }
 }

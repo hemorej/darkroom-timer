@@ -35,7 +35,7 @@
       </div>
       <div class="grid-x grid-margin-x">
         <div class="cell medium-1 medium-offset-3">
-          <button class="left black" @click="reset">
+          <button class="left warning hollow button" @click="reset">
             Reset
           </button>
         </div>

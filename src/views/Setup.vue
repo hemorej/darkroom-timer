@@ -4,7 +4,6 @@
       <div class="cell medium-6 medium-offset-3 text-center">
         <h1>
           Online Darkroom Timer
-          <span class="subheader">{{ timeRemaining }}</span>
         </h1>
       </div>
     </div>
@@ -16,6 +15,7 @@
 
         <div class="cell medium-4">
           <input
+            autofocus
             tabindex="1"
             type="number"
             placeholder="minutes"

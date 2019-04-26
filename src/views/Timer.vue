@@ -139,11 +139,11 @@ export default {
       counter: null,
       alertTimer: null,
       fullscreen: false,
-      development: parseInt(localStorage.getItem('development')),
-      inversion: parseInt(localStorage.getItem('inversion')),
-      stop: parseInt(localStorage.getItem('stop')),
-      fix: parseInt(localStorage.getItem('fix')),
-      wash: parseInt(localStorage.getItem('wash'))
+      development: parseInt(localStorage.getItem('development')) || 0,
+      inversion: parseInt(localStorage.getItem('inversion')) || 0,
+      stop: parseInt(localStorage.getItem('stop')) || 0,
+      fix: parseInt(localStorage.getItem('fix')) || 0,
+      wash: parseInt(localStorage.getItem('wash')) || 0
     }
   },
   computed: {
@@ -239,8 +239,12 @@ export default {
       wash: this.wash
     }
 
-    this.counter = window.setInterval(this.timer, 1000)
-    this.alertTimer = setTimeout(this.clear, 30000) // first 30 sec
+    if (this.development != 0) {
+      this.counter = window.setInterval(this.timer, 1000)
+      this.alertTimer = setTimeout(this.clear, 30000) // first 30 sec
+    } else {
+      this.getReady = false
+    }
   }
 }
 </script>

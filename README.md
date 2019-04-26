@@ -7,6 +7,6 @@ A quick personal tool I made over a weekend to help me time film development at 
 
 
 ### notes
-- The only css used is darkroom.css, the others were minifcation tests, the js used is from CDN.  
+- To run the app in development, first run npm install, then npm run serve
+- For production, run npm run build, and upload /dist to your server
 - You can use space to pause/resume while the timer is running, faster than clicking.  
-- Once the timer starts, you can bookmark the page with the parameters in the URL to come back to it later. It's a quick way to save development "recipes", eg: TriX in Rodinal  

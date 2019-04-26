@@ -14,7 +14,7 @@
           <label for="development" class="text-right">Develop for</label>
         </div>
 
-        <div class="cell medium-5 medium-offset-1">
+        <div class="cell medium-4">
           <input
             tabindex="1"
             type="number"
@@ -33,7 +33,7 @@
           <label for="inversion" class="text-right">Inversion every</label>
         </div>
 
-        <div class="cell medium-5 medium-offset-1">
+        <div class="cell medium-4">
           <input
             tabindex="2"
             type="number"
@@ -53,7 +53,7 @@
           <label for="stop" class="text-right">Stop for</label>
         </div>
 
-        <div class="cell medium-5 medium-offset-1">
+        <div class="cell medium-4">
           <input
             tabindex="3"
             type="number"
@@ -72,7 +72,7 @@
           <label for="fix" class="text-right">Fix for</label>
         </div>
 
-        <div class="cell medium-5 medium-offset-1">
+        <div class="cell medium-4">
           <input
             tabindex="4"
             type="number"
@@ -90,7 +90,7 @@
         <div class="cell medium-2 medium-offset-2">
           <label for="wash" class="text-right">Wash for</label>
         </div>
-        <div class="cell medium-5 medium-offset-1">
+        <div class="cell medium-4">
           <input
             tabindex="5"
             type="number"
@@ -106,12 +106,12 @@
       </div>
 
       <div class="grid-x grid-margin-x margin-top">
-        <div class="cell medium-1 medium-offset-2">
+        <div class="cell medium-1 medium-offset-3">
           <button class="left secondary" @click="reset">
             Reset
           </button>
         </div>
-        <div class="cell medium-5 medium-offset-2">
+        <div class="cell medium-4 medium-offset-1">
           <button tabindex="6" class="expanded primary">Go !</button>
         </div>
       </div>

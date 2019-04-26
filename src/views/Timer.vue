@@ -48,11 +48,11 @@
       </div>
 
       <div class="grid-x grid-margin-x margin-top">
-        <div class="cell medium-3 medium-offset-1">
+        <div class="cell medium-4 medium-offset-1">
           <h3 class="subheader medium-text-right">Development:</h3>
         </div>
 
-        <div class="cell medium-5">
+        <div class="cell medium-4">
           <h1
             :class="[
               this.step == 'development' ? 'current' : 'subheader',
@@ -65,11 +65,11 @@
       </div>
 
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-3 medium-offset-1">
+        <div class="cell medium-4 medium-offset-1">
           <h3 class="subheader medium-text-right">Stopping:</h3>
         </div>
 
-        <div class="cell medium-5">
+        <div class="cell medium-4">
           <h1
             :class="[
               this.step == 'stop' ? 'current' : 'subheader',
@@ -82,11 +82,11 @@
       </div>
 
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-3 medium-offset-1">
+        <div class="cell medium-4 medium-offset-1">
           <h3 class="subheader medium-text-right">Fixing:</h3>
         </div>
 
-        <div class="cell medium-5">
+        <div class="cell medium-4">
           <h1
             :class="[
               this.step == 'fix' ? 'current' : 'subheader',
@@ -99,11 +99,11 @@
       </div>
 
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-3 medium-offset-1">
+        <div class="cell medium-4 medium-offset-1">
           <h3 class="subheader medium-text-right">Washing:</h3>
         </div>
 
-        <div class="cell medium-5">
+        <div class="cell medium-4">
           <h1
             :class="[
               this.step == 'wash' ? 'current' : 'subheader',

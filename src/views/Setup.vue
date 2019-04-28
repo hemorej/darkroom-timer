@@ -9,8 +9,8 @@
     </div>
     <form class="margin-top" @submit.prevent="startTimer">
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-2 medium-offset-2">
-          <label for="development" class="text-right">Develop for</label>
+        <div class="cell small-4 medium-2 medium-offset-2">
+          <label for="development" class="medium-text-right">Develop for</label>
         </div>
 
         <div class="cell medium-4">
@@ -29,8 +29,10 @@
         </div>
       </div>
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-2 medium-offset-2">
-          <label for="inversion" class="text-right">Inversion every</label>
+        <div class="cell small-4 medium-2 medium-offset-2">
+          <label for="inversion" class="medium-text-right"
+            >Inversion every</label
+          >
         </div>
 
         <div class="cell medium-4">
@@ -49,8 +51,8 @@
         </div>
       </div>
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-2 medium-offset-2">
-          <label for="stop" class="text-right">Stop for</label>
+        <div class="cell small-4 medium-2 medium-offset-2">
+          <label for="stop" class="medium-text-right">Stop for</label>
         </div>
 
         <div class="cell medium-4">
@@ -68,8 +70,8 @@
         </div>
       </div>
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-2 medium-offset-2">
-          <label for="fix" class="text-right">Fix for</label>
+        <div class="cell small-4 medium-2 medium-offset-2">
+          <label for="fix" class="medium-text-right">Fix for</label>
         </div>
 
         <div class="cell medium-4">
@@ -87,8 +89,8 @@
         </div>
       </div>
       <div class="grid-x grid-margin-x">
-        <div class="cell medium-2 medium-offset-2">
-          <label for="wash" class="text-right">Wash for</label>
+        <div class="cell small-4 medium-2 medium-offset-2">
+          <label for="wash" class="medium-text-right">Wash for</label>
         </div>
         <div class="cell medium-4">
           <input
@@ -106,20 +108,20 @@
       </div>
 
       <div class="grid-x grid-margin-x margin-top">
-        <div class="cell medium-1 medium-offset-3">
-          <button class="hollow button left warning" @click="reset">
+        <div class="cell small-3 medium-1 medium-offset-3">
+          <button class="hollow button left warning" @click.prevent="reset">
             Reset
           </button>
         </div>
-        <div class="cell medium-1">
+        <div class="cell small-3 medium-1">
           <button
             :class="[{ disabled: !canSave }, 'button hollow left']"
-            @click="saveTime"
+            @click.prevent="prompt"
           >
             Save
           </button>
         </div>
-        <div class="cell medium-1">
+        <div class="cell small-3 medium-1">
           <button
             v-show="hasSavedTimes"
             class="hollow button left"
@@ -128,15 +130,36 @@
             Times
           </button>
         </div>
-        <div class="cell medium-4">
+        <div class="cell small-3 medium-4">
           <button tabindex="6" class="expanded primary">Go !</button>
         </div>
       </div>
     </form>
+    <modal
+      :name="recipeName"
+      :temperature="temperature"
+      :developer="developer"
+      v-if="showModal"
+      @close="showModal = false"
+      @save="saveTime"
+    >
+      <h3 slot="header">New time</h3>
+      <div slot="body">
+        <input type="text" v-model="recipeName" placeholder="name" />
+        <input type="number" v-model="temperature" placeholder="temperature" />
+        <input type="text" v-model="developer" placeholder="developer" />
+      </div>
+      <div slot="footer">
+        Development time: {{ this.development }}min <br />
+        Agitation: once every {{ this.inversion }}min <br />
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
+import modal from './Modal.vue'
+
 export default {
   data() {
     return {
@@ -144,8 +167,15 @@ export default {
       inversion: null,
       stop: null,
       fix: null,
-      wash: null
+      wash: null,
+      showModal: false,
+      recipeName: null,
+      developer: null,
+      temperature: null
     }
+  },
+  components: {
+    modal
   },
   methods: {
     submit() {
@@ -160,20 +190,53 @@ export default {
       this.$router.push({ name: 'timer' })
     },
     reset() {
-      localStorage.clear()
+      this.development = null
+      this.inversion = null
+      this.stop = null
+      this.fix = null
+      this.wash = null
+
+      localStorage.removeItem('development')
+      localStorage.removeItem('inversion')
+      localStorage.removeItem('stop')
+      localStorage.removeItem('fix')
+      localStorage.removeItem('wash')
     },
     saveTime() {
-      // localStorage.setItem('recipe', JSON.stringify({development: this.development, fix: this.fix, inversion: this.inversion, stop: this.stop, wash: this.wash}))
+      var recipes = localStorage.getItem('recipes')
+      if (recipes === JSON.stringify({})) {
+        recipes = [this.recipeName]
+      } else {
+        recipes = JSON.parse(recipes)
+        if (recipes.indexOf(this.recipeName) < 0) recipes.push(this.recipeName)
+      }
+      localStorage.setItem('recipes', JSON.stringify(recipes))
+      localStorage.setItem(
+        this.recipeName,
+        JSON.stringify({
+          development: this.development,
+          fix: this.fix,
+          inversion: this.inversion,
+          stop: this.stop,
+          wash: this.wash,
+          developer: this.developer,
+          temperature: this.temperature
+        })
+      )
+      this.showModal = false
+      this.$router.push({ name: 'times' })
+    },
+    prompt() {
+      this.showModal = true
     },
     savedTimes() {
-      // this.$router.push({ name: 'times' })
+      this.$router.push({ name: 'times' })
     }
   },
   computed: {
     hasSavedTimes() {
-      if (JSON.parse(localStorage.getItem('recipes'))) return true
-
-      return false
+      var recipes = localStorage.getItem('recipes')
+      return recipes !== JSON.stringify([])
     },
     canSave() {
       return (
@@ -189,6 +252,10 @@ export default {
         this.wash != 0
       )
     }
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem('recipes')) == null)
+      localStorage.setItem('recipes', JSON.stringify([]))
   }
 }
 </script>

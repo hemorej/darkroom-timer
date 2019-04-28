@@ -175,7 +175,11 @@ export default {
       this.running = !this.running
     },
     reset() {
-      localStorage.clear()
+      localStorage.removeItem('development')
+      localStorage.removeItem('inversion')
+      localStorage.removeItem('stop')
+      localStorage.removeItem('fix')
+      localStorage.removeItem('wash')
       this.$router.push({ name: 'setup' })
     },
     timer() {

@@ -30,11 +30,13 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   name: 'times',
   data() {
     return {
-      savedTimes: JSON.parse(localStorage.getItem('recipes'))
+      savedTimes: JSON.parse(localStorage.recipes)
     }
   },
   methods: {
@@ -45,17 +47,23 @@ export default {
       var answer = confirm('Delete ' + name + ' ?')
       if (answer == true) {
         this.savedTimes.splice(index, 1)
-        localStorage.setItem('recipes', JSON.stringify(this.savedTimes))
 
-        localStorage.removeItem(name)
+        if (_.isEmpty(this.savedTimes)) {
+          localStorage.clear()
+          this.$router.push({ name: 'setup' })
+        } else {
+          localStorage.removeItem(name)
+          localStorage.recipes = JSON.stringify(this.savedTimes)
+        }
       }
     },
     start(name) {
-      localStorage.setItem('development', this.recipe(name).development * 60)
-      localStorage.setItem('inversion', this.recipe(name).inversion * 60)
-      localStorage.setItem('stop', this.recipe(name).stop * 60)
-      localStorage.setItem('fix', this.recipe(name).fix * 60)
-      localStorage.setItem('wash', this.recipe(name).wash * 60)
+      localStorage.development = this.recipe(name).development * 60
+      localStorage.inversion = this.recipe(name).inversion * 60
+      localStorage.stop = this.recipe(name).stop * 60
+      localStorage.fix = this.recipe(name).fix * 60
+      localStorage.wash = this.recipe(name).wash * 60
+
       this.$router.push({ name: 'timer' })
     }
   },

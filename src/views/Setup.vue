@@ -159,6 +159,7 @@
 
 <script>
 import modal from './Modal.vue'
+import _ from 'lodash'
 
 export default {
   data() {
@@ -182,11 +183,12 @@ export default {
       this.$refs.form.$el.submit()
     },
     startTimer() {
-      localStorage.setItem('development', this.development * 60)
-      localStorage.setItem('inversion', this.inversion * 60)
-      localStorage.setItem('stop', this.stop * 60)
-      localStorage.setItem('fix', this.fix * 60)
-      localStorage.setItem('wash', this.wash * 60)
+      localStorage.development = this.development * 60
+      localStorage.inversion = this.inversion * 60
+      localStorage.stop = this.stop * 60
+      localStorage.fix = this.fix * 60
+      localStorage.wash = this.wash * 60
+
       this.$router.push({ name: 'timer' })
     },
     reset() {
@@ -203,14 +205,14 @@ export default {
       localStorage.removeItem('wash')
     },
     saveTime() {
-      var recipes = localStorage.getItem('recipes')
-      if (recipes === JSON.stringify({})) {
+      var recipes = localStorage.recipes
+      if (_.isEmpty(recipes)) {
         recipes = [this.recipeName]
       } else {
         recipes = JSON.parse(recipes)
         if (recipes.indexOf(this.recipeName) < 0) recipes.push(this.recipeName)
       }
-      localStorage.setItem('recipes', JSON.stringify(recipes))
+      localStorage.recipes = JSON.stringify(recipes)
       localStorage.setItem(
         this.recipeName,
         JSON.stringify({
@@ -235,27 +237,17 @@ export default {
   },
   computed: {
     hasSavedTimes() {
-      var recipes = localStorage.getItem('recipes')
-      return recipes !== JSON.stringify([])
+      return !_.isEmpty(localStorage.recipes)
     },
     canSave() {
       return (
-        this.development != null &&
-        this.inversion != null &&
-        this.stop != null &&
-        this.fix != null &&
-        this.wash != null &&
-        this.development != 0 &&
-        this.inversion != 0 &&
-        this.stop != 0 &&
-        this.fix != 0 &&
-        this.wash != 0
+        parseInt(this.development) > 0 &&
+        parseInt(this.inversion) > 0 &&
+        parseInt(this.stop) > 0 &&
+        parseInt(this.fix) > 0 &&
+        parseInt(this.wash) > 0
       )
     }
-  },
-  created() {
-    if (JSON.parse(localStorage.getItem('recipes')) == null)
-      localStorage.setItem('recipes', JSON.stringify([]))
   }
 }
 </script>

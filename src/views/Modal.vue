@@ -41,17 +41,13 @@
 
 <script>
 export default {
-  props: ['name', 'temperature', 'developer'],
   name: 'modal',
   computed: {
     noInput() {
       return (
-        this.name == null ||
-        this.name == '' ||
-        this.temperature == null ||
-        this.temperature == '' ||
-        this.developer == null ||
-        this.developer == ''
+        _.isEmpty(this.$attrs.recipeName) ||
+        _.isEmpty(this.$attrs.temperature) ||
+        _.isEmpty(this.$attrs.developer)
       )
     }
   },

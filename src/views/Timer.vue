@@ -139,11 +139,11 @@ export default {
       counter: null,
       alertTimer: null,
       fullscreen: false,
-      development: parseInt(localStorage.getItem('development')) || 0,
-      inversion: parseInt(localStorage.getItem('inversion')) || 0,
-      stop: parseInt(localStorage.getItem('stop')) || 0,
-      fix: parseInt(localStorage.getItem('fix')) || 0,
-      wash: parseInt(localStorage.getItem('wash')) || 0
+      development: parseInt(localStorage.development) || 0,
+      inversion: parseInt(localStorage.inversion) || 0,
+      stop: parseInt(localStorage.stop) || 0,
+      fix: parseInt(localStorage.fix) || 0,
+      wash: parseInt(localStorage.wash) || 0
     }
   },
   computed: {

@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 export default {
   name: 'times',
   data() {
@@ -66,8 +64,7 @@ export default {
 
       this.$router.push({ name: 'timer' })
     }
-  },
-  computed: {}
+  }
 }
 </script>
 

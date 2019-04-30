@@ -136,9 +136,9 @@
       </div>
     </form>
     <modal
-      :name="recipeName"
-      :temperature="temperature"
+      :recipeName="recipeName"
       :developer="developer"
+      :temperature="temperature"
       v-if="showModal"
       @close="showModal = false"
       @save="saveTime"
@@ -159,7 +159,6 @@
 
 <script>
 import modal from './Modal.vue'
-import _ from 'lodash'
 
 export default {
   data() {

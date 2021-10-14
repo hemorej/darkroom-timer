@@ -18,7 +18,7 @@
           class="cell medium-6 medium-offset-3 text-center"
           :class="{
             'warning callout': getReady == true,
-            'primary callout': running == false
+            'primary callout': running == false,
           }"
         >
           <div class="subheader">
@@ -56,7 +56,7 @@
           <h1
             :class="[
               this.step == 'development' ? 'current' : 'subheader',
-              'small-text-right'
+              'small-text-right',
             ]"
           >
             {{ clockCountdown('development') }}
@@ -73,7 +73,7 @@
           <h1
             :class="[
               this.step == 'stop' ? 'current' : 'subheader',
-              'small-text-right'
+              'small-text-right',
             ]"
           >
             {{ clockCountdown('stop') }}
@@ -90,7 +90,7 @@
           <h1
             :class="[
               this.step == 'fix' ? 'current' : 'subheader',
-              'small-text-right'
+              'small-text-right',
             ]"
           >
             {{ clockCountdown('fix') }}
@@ -107,7 +107,7 @@
           <h1
             :class="[
               this.step == 'wash' ? 'current' : 'subheader',
-              'small-text-right'
+              'small-text-right',
             ]"
           >
             {{ clockCountdown('wash') }}
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-Number.prototype.pad = function(size) {
+Number.prototype.pad = function (size) {
   var s = String(this)
   while (s.length < (size || 2)) {
     s = '0' + s
@@ -143,7 +143,7 @@ export default {
       inversion: parseInt(localStorage.inversion) || 0,
       stop: parseInt(localStorage.stop) || 0,
       fix: parseInt(localStorage.fix) || 0,
-      wash: parseInt(localStorage.wash) || 0
+      wash: parseInt(localStorage.wash) || 0,
     }
   },
   computed: {
@@ -161,10 +161,10 @@ export default {
         this.steps['stop'] +
         this.steps['wash']
       )
-    }
+    },
   },
   methods: {
-    clockCountdown: function(step) {
+    clockCountdown: function (step) {
       var localCounter = this.steps[step]
 
       return (
@@ -233,14 +233,14 @@ export default {
         case 'f':
           this.fullscreen = !this.fullscreen
       }
-    }
+    },
   },
   created() {
     this.steps = {
       development: this.development,
       stop: this.stop,
       fix: this.fix,
-      wash: this.wash
+      wash: this.wash,
     }
 
     if (this.development != 0) {
@@ -249,7 +249,7 @@ export default {
     } else {
       this.getReady = false
     }
-  }
+  },
 }
 </script>
 

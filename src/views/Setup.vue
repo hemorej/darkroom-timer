@@ -2,9 +2,7 @@
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
       <div class="cell medium-6 medium-offset-3 text-center">
-        <h1>
-          Online Darkroom Timer
-        </h1>
+        <h1>Online Darkroom Timer</h1>
       </div>
     </div>
     <form class="margin-top" @submit.prevent="startTimer">
@@ -171,11 +169,11 @@ export default {
       showModal: false,
       recipeName: null,
       developer: null,
-      temperature: null
+      temperature: null,
     }
   },
   components: {
-    modal
+    modal,
   },
   methods: {
     submit() {
@@ -221,7 +219,7 @@ export default {
           stop: this.stop,
           wash: this.wash,
           developer: this.developer,
-          temperature: this.temperature
+          temperature: this.temperature,
         })
       )
       this.showModal = false
@@ -232,7 +230,7 @@ export default {
     },
     savedTimes() {
       this.$router.push({ name: 'times' })
-    }
+    },
   },
   computed: {
     hasSavedTimes() {
@@ -246,8 +244,8 @@ export default {
         parseInt(this.fix) > 0 &&
         parseInt(this.wash) > 0
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

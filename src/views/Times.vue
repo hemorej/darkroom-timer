@@ -2,9 +2,7 @@
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
       <div class="cell medium-6 medium-offset-3 text-center">
-        <h1>
-          Online Darkroom Timer
-        </h1>
+        <h1>Online Darkroom Timer</h1>
       </div>
     </div>
     <div class="grid-x grid-margin-x margin-top">
@@ -34,7 +32,7 @@ export default {
   name: 'times',
   data() {
     return {
-      savedTimes: JSON.parse(localStorage.recipes)
+      savedTimes: JSON.parse(localStorage.recipes),
     }
   },
   methods: {
@@ -63,8 +61,8 @@ export default {
       localStorage.wash = this.recipe(name).wash * 60
 
       this.$router.push({ name: 'timer' })
-    }
-  }
+    },
+  },
 }
 </script>
 

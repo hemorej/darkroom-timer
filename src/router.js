@@ -15,18 +15,18 @@ export default new Router({
       path: '/',
       name: 'setup',
       alias: '/setup',
-      component: Setup
+      component: Setup,
     },
     {
       path: '/timer',
       name: 'timer',
-      component: Timer
+      component: Timer,
     },
     {
       path: '/times',
       name: 'times',
-      component: Times
+      component: Times,
     },
-    { path: '*', component: NotFoundComponent }
-  ]
+    { path: '*', component: NotFoundComponent },
+  ],
 })

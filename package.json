@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "prod": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,14 +17,14 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "cli-plugin-eslint": "^0.1.0",
-    "@vue/cli-plugin-babel": "^4.5.14",
+    "@vue/cli-plugin-babel": "~5.0.0-rc.2",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "^4.5.15",
+    "@vue/cli-service": "~5.0.0-rc.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "cli-plugin-eslint": "^0.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.19.1",
+    "eslint-plugin-vue": "^7.5.0",
     "prettier": "^2.2.1",
     "vue-template-compiler": "^2.6.14"
   }

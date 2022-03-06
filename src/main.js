@@ -1,18 +1,12 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+
 import App from './App.vue'
 import router from './router'
-import store from './store'
-import fullscreen from 'vue-fullscreen'
-import _ from 'lodash'
+import VueFullscreen from 'vue-fullscreen'
 
-Vue.use(require('vue-shortkey'))
-Vue.use(fullscreen)
-Vue.set(Vue.prototype, '_', _)
+const app = createApp(App)
 
-Vue.config.productionTip = false
+app.use(router)
+app.use(VueFullscreen)
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app')
+app.mount('#app')

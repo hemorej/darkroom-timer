@@ -14,16 +14,29 @@
           <div class="modal-footer">
             <slot name="footer"> default footer </slot>
             <slot name="button">
-              <div class="margin-top">
-                <button
-                  :class="[{ disabled: noInput }, 'right button']"
-                  @click="$emit('save')"
-                >
-                  OK
-                </button>
-                <button class="button hollow primary" @click="$emit('close')">
-                  cancel
-                </button>
+                <div class="mw7 center ph3-ns mt2">
+                  <div class="cf ph2-ns">
+                    <div class="fl w-100">
+                      <div class="fl w-50-ns pa2 mt2">
+                        <button
+                        class="br2 ba ph3 pv2 mb2 ml2 dib"
+                        :class="[noInput == true ? 'gray hover-gray hover-bg-transparent bg-transparent' : 'link bg-navy b--navy hover-white white hover-bg-navy']"
+                        :disabled="noInput"
+                        @click="$emit('save')"
+                        >
+                          OK
+                        </button>
+                      </div>
+
+                      <div class="fl w-50-ns pa2 mt2">
+                        <button 
+                          class="br2 ba ph3 pv2 mb2 dib link black-80 b--black-80 hover-white hover-bg-black bg-transparent"
+                          @click="$emit('close')">
+                          cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </slot>
           </div>
@@ -34,14 +47,17 @@
 </template>
 
 <script>
+import { isEmpty, isNaN } from 'lodash'
+
 export default {
   name: 'modal',
   computed: {
     noInput() {
       return (
-        _.isEmpty(this.$attrs.recipeName) ||
-        _.isEmpty(this.$attrs.temperature) ||
-        _.isEmpty(this.$attrs.developer)
+        isEmpty(this.$attrs.recipeName) ||
+        isEmpty(this.$attrs.temperature) ||
+        isNaN(parseInt(this.$attrs.temperature)) ||
+        isEmpty(this.$attrs.developer) 
       )
     },
   },
@@ -68,15 +84,15 @@ export default {
 }
 
 .modal-container {
-  width: 450px;
+  width: 400px;
   height: 400px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 20px 20px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "meta", sans-serif;
 }
 
 .modal-header h3 {

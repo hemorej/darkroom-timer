@@ -1,39 +1,3 @@
-/*** uncss> filename: http://localhost:8888/darkroom/css/foundation.css ***/
-
-meta.foundation-mq-small {
-  font-family: "/only screen/";
-  width: 0em;
-}
-
-meta.foundation-mq-medium {
-  font-family: "/only screen and (min-width:40.063em)/";
-  width: 40.063em;
-}
-
-meta.foundation-mq-large {
-  font-family: "/only screen and (min-width:64.063em)/";
-  width: 64.063em;
-}
-
-meta.foundation-mq-xlarge {
-  font-family: "/only screen and (min-width:90.063em)/";
-  width: 90.063em;
-}
-
-meta.foundation-mq-xxlarge {
-  font-family: "/only screen and (min-width:120.063em)/";
-  width: 120.063em;
-}
-
-meta.foundation-data-attribute-namespace {
-  font-family: false;
-}
-
-html,
-body {
-  height: 100%;
-}
-
 @font-face {
   font-family: 'meta';
   src: url('./MetaWeb-Normal.eot');
@@ -73,183 +37,9 @@ a:hover {
   cursor: pointer;
 }
 
-.left {
-  float: left !important;
-}
-
-.right {
-  float: right !important;
-}
-
-.row {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 40em;
-}
-
-.row:before,
-.row:after {
-  content: " ";
-  display: table;
-}
-
-.row:after {
-  clear: both;
-}
-
-.columns {
-  padding-left: 0.9375em;
-  padding-right: 0.9375em;
-  width: 100%;
-  float: left;
-}
-
-[class*="column"] + [class*="column"]:last-child {
-  float: right;
-}
-
-@media only screen {
-  .columns {
-    position: relative;
-    padding-left: 0.9375em;
-    padding-right: 0.9375em;
-    float: left;
-  }
-}
-
-@media only screen and (min-width: 40.063em) {
-  .columns {
-    position: relative;
-    padding-left: 0.9375em;
-    padding-right: 0.9375em;
-    float: left;
-  }
-
-  .medium-1 {
-    width: 10%;
-  }
-
-  .medium-2 {
-    width: 20%;
-  }
-
-  .medium-3 {
-    width: 30%;
-  }
-
-  .medium-4 {
-    width: 40%;
-  }
-
-  .medium-6 {
-    width: 60%;
-  }
-
-  .medium-7 {
-    width: 70%;
-  }
-
-  .medium-8 {
-    width: 80%;
-  }
-}
-
-@media only screen and (min-width: 64.063em) {
-  .columns {
-    position: relative;
-    padding-left: 0.9375em;
-    padding-right: 0.9375em;
-    float: left;
-  }
-}
-
-button {
-  border-style: solid;
-  border-width: 0px;
-  cursor: pointer;
-  font-family: "meta", sans-serif;
-  font-weight: normal;
-  line-height: normal;
-  margin: 0 0 1.25rem;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  display: inline-block;
-  padding-top: 1rem;
-  padding-right: 2rem;
-  padding-bottom: 1.0625rem;
-  padding-left: 2rem;
-  font-size: 1rem;
-  background-color: #2ba6cb;
-  color: white;
-  transition: background-color 300ms ease-out;
-}
-
-button:hover,
-button:focus {
-  background-color: #2285a2;
-  outline: none;
-}
-
-button.secondary {
-  background-color: #e9e9e9;
-  border-color: #e9e9e9;
-  color: #333333;
-}
-
-button.secondary:hover,
-button.secondary:focus {
-  background-color: #e9e9e9;
-  outline: none;
-  color: #333333;
-}
-
-button.black {
-  background-color: #000;
-  border-color: #9e0c0f;
-  color: white;
-}
-
-button.black:hover,
-button.black:focus {
-  background-color: #000;
-  outline: none;
-  color: white;
-}
-
-button.expanded {
-  display: block;
-  width: 100%;
-  margin-right: 0;
-  margin-left: 0;
-  padding: 0.85em 1em
-}
-
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-@media only screen and (min-width: 40.063em) {
-  button {
-    display: inline-block;
-  }
-}
-
-/* Standard Forms */
-
 form {
   margin: 0 0 1rem;
 }
-
-/* Using forms within rows, we need to set some defaults */
-
-/* Label Styles */
 
 label {
   font-size: 0.875rem;
@@ -259,22 +49,7 @@ label {
   font-weight: normal;
   line-height: 1.5;
   margin-bottom: 0;
-  /* Styles for required inputs */
 }
-
-label.right {
-  float: none !important;
-  text-align: right;
-}
-
-/* Attach elements to the beginning or end of an input */
-
-/* Adjust padding, alignment and radius if pre/post element is a button */
-
-/* Separate prefix and postfix styles when on span or label so buttons keep their own */
-
-/* We use this to get basic styling on all basic form elements */
-
 input[type="number"] {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
@@ -313,26 +88,12 @@ input[type="number"]:disabled {
   cursor: default;
 }
 
-/* Respect enforced amount of rows for textarea */
-
-/* Not allow resize out of parent */
-
-/* Add height value for select elements to match text input height */
-
-select::-ms-expand {
-  display: none;
+::-moz-selection{
+  background-color: #ffdfdf;
 }
-
-/* Adjust margin for form elements below */
-
-/* Normalize file input width */
-
-/* HTML5 Number spinners settings */
-
-/* We add basic fieldset styling */
-
-/* Error Handling */
-
+::selection{
+  background-color: #ffdfdf;
+}
 span.error, small.error {
   display: block;
   padding: 0.375rem 0.5625rem 0.5625rem;
@@ -377,29 +138,6 @@ span.error, small.error {
 .error span.error-message {
   display: block; }
 
-meta.foundation-mq-topbar {
-  font-family: "/only screen and (min-width:40.063em)/";
-  width: 58.75em;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-@media only screen {
-  .small-text-right {
-    text-align: right !important;
-  }
-}
-
-@media only screen and (min-width: 40.063em) {
-  .medium-text-right {
-    text-align: right !important;
-  }
-}
-
-/* Typography resets */
-
 div,
 h1,
 h3,
@@ -407,8 +145,6 @@ form {
   margin: 0;
   padding: 0;
 }
-
-/* Default Link Styles */
 
 a {
   color: #808080;
@@ -421,10 +157,6 @@ a:hover,
 a:focus {
   color: #258faf;
 }
-
-/* Default paragraph styles */
-
-/* Default header styles */
 
 h1,
 h3 {
@@ -453,38 +185,7 @@ h3 {
   font-size: 1.375rem;
 }
 
-.margin-bottom {
-  margin-bottom: 30px;
-}
-
-.subheader {
-  line-height: 1.4;
-  color: #6f6f6f;
-  font-weight: normal;
-  margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
-}
-
 /* Helpful Typography Defaults */
-
-small {
-  font-size: 50%;
-  line-height: inherit;
-}
-
-/* Lists */
-
-/* Unordered Lists */
-
-/* Ordered Lists */
-
-/* Definition Lists */
-
-/* Abbreviations */
-
-/* Blockquotes */
-
-/* Microformats */
 
 @media only screen and (min-width: 40.063em) {
   h1,
@@ -501,28 +202,25 @@ small {
   }
 }
 
-.footer {
-  margin-top: 100px;
-}
-
 #notice {
   visibility: hidden;
 }
 
-#current h1 {color: black}
-
-:-webkit-full-screen h1, :-webkit-full-screen h3{font-size:55px}
-:-webkit-full-screen h2{font-size:35px}
+:-webkit-full-screen h1{font-size: 55px}
+:-webkit-full-screen h3{font-size:40px}
 :-webkit-full-screen .timer {margin-top:12%}
 :-webkit-full-screen .title {visibility: hidden}
-:-moz-full-screen h1, :-moz-full-screen h3{font-size:55px}
-:-moz-full-screen h2{font-size:35px}
+
+:-moz-full-screen h1{font-size: 55px}
+:-moz-full-screen h3{font-size:40px}
 :-moz-full-screen .timer {margin-top:12%}
 :-moz-full-screen .title {visibility: hidden}
-:-ms-full-screen h1, :-ms-full-screen h3{font-size:55px}
-:-ms-full-screen h2{font-size:35px}
+
+:-ms-full-screen h1{font-size: 55px}
+:-ms-full-screen h3{font-size:40px}
 :-ms-full-screen .timer {margin-top:12%}
 :-ms-full-screen .title {visibility: hidden}
+
 :-webkit-full-screen html{background-color: #dcdcdc}
 :-moz-full-screen html{background-color: #dcdcdc}
 :-ms-full-screen html{background-color: #dcdcdc}

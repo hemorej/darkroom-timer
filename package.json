@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "vue": "^3.4.18",
+    "vue": "^3.4.19",
     "vue-fullscreen": "^3.1.1",
     "vue-router": "^4.2.5"
   },

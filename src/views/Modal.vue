@@ -14,29 +14,34 @@
           <div class="modal-footer">
             <slot name="footer"> default footer </slot>
             <slot name="button">
-                <div class="mw7 center ph3-ns mt2">
-                  <div class="cf ph2-ns">
-                    <div class="fl w-100">
-                      <div class="fl w-50-ns pa2 mt2">
-                        <button
+              <div class="mw7 center ph3-ns mt2">
+                <div class="cf ph2-ns">
+                  <div class="fl w-100">
+                    <div class="fl w-50-ns pa2 mt2">
+                      <button
                         class="br2 ba ph3 pv2 mb2 ml2 dib"
-                        :class="[noInput == true ? 'gray hover-gray hover-bg-transparent bg-transparent' : 'link bg-navy b--navy hover-white white hover-bg-navy']"
+                        :class="[
+                          noInput == true
+                            ? 'gray hover-gray hover-bg-transparent bg-transparent'
+                            : 'link bg-navy b--navy hover-white white hover-bg-navy',
+                        ]"
                         :disabled="noInput"
                         @click="$emit('save')"
-                        >
-                          OK
-                        </button>
-                      </div>
+                      >
+                        OK
+                      </button>
+                    </div>
 
-                      <div class="fl w-50-ns pa2 mt2">
-                        <button 
-                          class="br2 ba ph3 pv2 mb2 dib link black-80 b--black-80 hover-white hover-bg-black bg-transparent"
-                          @click="$emit('close')">
-                          cancel
-                        </button>
-                      </div>
+                    <div class="fl w-50-ns pa2 mt2">
+                      <button
+                        class="br2 ba ph3 pv2 mb2 dib link black-80 b--black-80 hover-white hover-bg-black bg-transparent"
+                        @click="$emit('close')"
+                      >
+                        cancel
+                      </button>
                     </div>
                   </div>
+                </div>
               </div>
             </slot>
           </div>
@@ -47,22 +52,22 @@
 </template>
 
 <script>
-import { isEmpty, isNaN } from 'lodash'
+import { isEmpty, isNaN } from "lodash";
 
 export default {
-  name: 'modal',
+  name: "modal",
   computed: {
     noInput() {
       return (
         isEmpty(this.$attrs.recipeName) ||
         isEmpty(this.$attrs.temperature) ||
         isNaN(parseInt(this.$attrs.temperature)) ||
-        isEmpty(this.$attrs.developer) 
-      )
+        isEmpty(this.$attrs.developer)
+      );
     },
   },
   methods: {},
-}
+};
 </script>
 
 <style>

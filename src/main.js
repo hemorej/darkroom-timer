@@ -1,12 +1,12 @@
-import { createApp } from 'vue'
+import { createApp } from "vue";
 
-import App from './App.vue'
-import router from './router'
-import VueFullscreen from 'vue-fullscreen'
+import App from "./App.vue";
+import router from "./router";
+import VueFullscreen from "vue-fullscreen";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
-app.use(VueFullscreen)
+app.use(router);
+app.use(VueFullscreen);
 
-app.mount('#app')
+app.mount("#app");

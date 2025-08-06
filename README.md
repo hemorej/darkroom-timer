@@ -9,5 +9,4 @@ A quick personal tool I made over a weekend to help me time film development at 
 ### notes
 - To run the app in development, first run `npm install`, then `npm run dev`  
 - For production, run `npm run build`, and upload `/dist` to your server  
-- `app.css` under `/dist` needs minifying before uploading to production  
 - Make sure `index.html` and `.htaccess` are not routing from subdirectory `/darkroom`

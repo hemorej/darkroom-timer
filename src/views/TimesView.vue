@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import lodash from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 export default {
   name: "times-view",
@@ -65,7 +65,7 @@ export default {
       if (answer == true) {
         this.savedTimes.splice(index, 1);
 
-        if (lodash.isEmpty(this.savedTimes)) {
+        if (isEmpty(this.savedTimes)) {
           localStorage.clear();
           this.$router.push({ name: "setup" });
         } else {

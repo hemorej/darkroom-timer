@@ -224,7 +224,7 @@
 
 <script>
 import modal from "./Modal.vue";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 export default {
   data() {

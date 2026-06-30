@@ -52,7 +52,8 @@
 </template>
 
 <script>
-import { isEmpty, isNaN } from "lodash";
+import isEmpty from "lodash/isEmpty";
+import isNaN from "lodash/isNaN";
 
 export default {
   name: "modal",

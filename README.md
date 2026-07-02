@@ -7,9 +7,9 @@ A quick personal tool I made over a weekend to help me time film development at 
 
 
 ### notes
-- To run the app in development, first run `npm install`, then `npm run dev`  
-- For production, run `npm run build`, and upload `/dist` to your server  
-- Make sure `index.html` and `.htaccess` are not routing from subdirectory `/darkroom`
+- To run the app in development, first run `pnpm install`, then `pnpm dev`  
+- For production, run `pnpm build`, and upload `/dist` to your server  
+- Deployment is served by nginx directly from `/dist` — no subdirectory routing needed
 
 ### deployment status
 

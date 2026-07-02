@@ -25,10 +25,15 @@ const paused = ref(false)
 const done = ref(false)
 const elapsedInStage = ref(0)
 
+/** Zero-pads a number to 2 digits. */
 function pad(n) { return String(n).padStart(2, '0') }
+/** Formats a seconds value as MM:SS. */
 function fmt(s) { s = Math.max(0, Math.round(s)); return pad(Math.floor(s / 60)) + ':' + pad(s % 60) }
+/** Converts a minutes string/number (decimals allowed) to whole seconds. */
 function mins(v) { return Math.max(0, Math.round((parseFloat(v) || 0) * 60)) }
 
+// Snaps the inversion interval to the nearest 30-second multiple (minimum 30s).
+// Zero is allowed and means "no agitation reminders".
 function onInvertBlur() {
   const n = parseInt(invert.value) || 0
   invert.value = n === 0 ? '0' : String(Math.max(30, Math.round(n / 30) * 30))
@@ -36,6 +41,8 @@ function onInvertBlur() {
 
 let timerInterval = null
 
+// Called every second. Advances stageLeft; transitions to the next stage when
+// the current one reaches zero, or marks done when the last stage finishes.
 function tick() {
   if (view.value !== 'running' || paused.value || done.value) return
   if (stageLeft.value <= 1) {
@@ -82,6 +89,10 @@ function resetForm() {
   stop.value = ''
   fix.value = ''
   wash.value = ''
+}
+
+function togglePause() {
+  if (!done.value) paused.value = !paused.value
 }
 
 function reset() {
@@ -140,6 +151,8 @@ const invertDisplay = computed(() => {
 
 const curStage = computed(() => stages.value[idx.value])
 
+// "active" is true for the first 5 seconds of each inversion interval,
+// giving a brief tactile window to act before the countdown resumes.
 const agitation = computed(() => {
   if (view.value !== 'running' || done.value || !curStage.value) return null
   if (curStage.value.key !== 'develop') return null

@@ -4,5 +4,5 @@ cd $FORGE_SITE_PATH
 
 git checkout . # undo temp changes, restore to last git status to avoid pull conflicts
 git pull origin $FORGE_SITE_BRANCH # get latest
-/home/forge/.local/share/pnpm/bin/pnpm install --frozen-lockfile
-/home/forge/.local/share/pnpm/bin/pnpm run build
+$PNPM_PATH install --frozen-lockfile
+$PNPM_PATH run build

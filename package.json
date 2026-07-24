@@ -1,12 +1,14 @@
 {
     "name": "darkroom-timer",
     "version": "3.0.0",
-    "scripts": {
+    "scripts":
+    {
         "dev": "vite",
         "build": "vite build --base=/",
         "lint": "eslint -c eslintrc.mjs . --fix --ignore-pattern 'dist/*'"
     },
-    "dependencies": {
+    "dependencies":
+    {
         "@fontsource/ibm-plex-sans": "^5.2.8",
         "@fontsource/spectral": "^5.2.8",
         "lodash": "^4.18.1",
@@ -14,7 +16,8 @@
         "vue-fullscreen": "^3.1.3",
         "vue-router": "^5.2.0"
     },
-    "devDependencies": {
+    "devDependencies":
+    {
         "@eslint/eslintrc": "^3.3.6",
         "@eslint/js": "^9.39.2",
         "@rushstack/eslint-patch": "^1.16.1",
@@ -32,5 +35,9 @@
         "vite": "^8.1.5",
         "vite-plugin-compression": "^0.5.1",
         "vite-plugin-image-optimizer": "^2.0.3"
+    },
+    "overrides":
+    {
+        "brace-expansion": ">=1.1.16"
     }
 }

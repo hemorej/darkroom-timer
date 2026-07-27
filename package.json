@@ -20,7 +20,7 @@
     {
         "@eslint/js": "^10.0.1",
         "@rushstack/eslint-patch": "^1.16.1",
-        "@vitejs/plugin-vue": "^6.0.0",
+        "@vitejs/plugin-vue": "^6.0.8",
         "@vue/eslint-config-prettier": "^10.2.0",
         "esbuild": "^0.28.0",
         "eslint": "^10.2.1",

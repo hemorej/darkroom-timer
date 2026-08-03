@@ -2,6 +2,12 @@ allowBuilds:
   esbuild: true
   sharp: true
 
+# Force a patched transitive version — brace-expansion@5.0.7, pulled in via
+# eslint > @eslint/config-array > minimatch, has two known high-severity DoS
+# advisories (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895) fixed in 5.0.9+.
+overrides:
+  brace-expansion: ">=5.0.9"
+
 # Supply-chain safety net: refuse to resolve/install package versions
 # published more recently than this window. Malicious or compromised
 # releases are typically caught and pulled from the registry within

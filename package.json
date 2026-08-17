@@ -28,7 +28,7 @@
         "globals": "^17.11.0",
         "prettier": "^3.9.6",
         "playwright": "^1.62.1",
-        "rollup-plugin-visualizer": "^7.0.1",
+        "rollup-plugin-visualizer": "^7.1.1",
         "sharp": "^0.35.3",
         "svgo": "^4.0.2",
         "vite": "^8.2.1",

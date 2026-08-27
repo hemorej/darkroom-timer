@@ -1,29 +1,43 @@
 <script setup>
+/**
+ * Darkroom Timer — the entire application.
+ *
+ * Two views toggled by `view`: 'setup' (enter/save/load times) and 'running'
+ * (countdown). A single 1-second interval drives the countdown via tick().
+ * During the development stage, an agitation callout tells the user when to
+ * invert the tank, on the cadence set by `invert`. Recipes persist to
+ * localStorage under the key 'darkroom-timer-recipes'.
+ */
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
-const dark = ref(false)
-const view = ref('setup')
-const modalOpen = ref(false)
+// ---- UI state ----
+const dark = ref(false)          // darkroom (dark) vs. light theme
+const view = ref('setup')        // 'setup' | 'running'
+const modalOpen = ref(false)     // save-recipe modal visibility
 
+// ---- Process times (minutes, except `invert` which is seconds). Kept as
+// strings because they are bound directly to text inputs. ----
 const develop = ref('10')
 const invert = ref('60')
 const stop = ref('1')
 const fix = ref('5')
 const wash = ref('10')
 
+// ---- Save-recipe modal fields ----
 const recipeName = ref('')
 const recipeTemp = ref('')
 const recipeDev = ref('')
 
-const saved = ref([])
+const saved = ref([])            // recipes loaded from / written to localStorage
 
-const stages = ref([])
-const idx = ref(0)
-const stageLeft = ref(0)
-const totalLeft = ref(0)
+// ---- Running-timer state ----
+const stages = ref([])           // [{ key, label, secs }] built by start(); zero-length stages filtered out
+const idx = ref(0)               // index of the stage currently counting down
+const stageLeft = ref(0)         // seconds remaining in the current stage
+const totalLeft = ref(0)         // seconds remaining across all stages
 const paused = ref(false)
-const done = ref(false)
-const elapsedInStage = ref(0)
+const done = ref(false)          // true once the last stage hits zero
+const elapsedInStage = ref(0)    // seconds elapsed in the current stage (drives the agitation cadence)
 
 /** Zero-pads a number to 2 digits. */
 function pad(n) { return String(n).padStart(2, '0') }
@@ -64,6 +78,11 @@ function tick() {
   }
 }
 
+/**
+ * Builds the stage list from the current times (dropping any zero-length
+ * stage), primes the countdown state and switches to the running view.
+ * No-op if every stage is zero.
+ */
 function start() {
   const list = [
     { key: 'develop', label: 'Development', secs: mins(develop.value) },
@@ -83,6 +102,7 @@ function start() {
   view.value = 'running'
 }
 
+/** Clears every time field back to empty. */
 function resetForm() {
   develop.value = ''
   invert.value = ''
@@ -91,10 +111,12 @@ function resetForm() {
   wash.value = ''
 }
 
+/** Pause / resume the countdown (ignored once the run is done). */
 function togglePause() {
   if (!done.value) paused.value = !paused.value
 }
 
+/** Abandon the current run and return to the setup view. */
 function reset() {
   view.value = 'setup'
   paused.value = false
@@ -103,6 +125,7 @@ function reset() {
 
 function openModal() { modalOpen.value = true }
 
+/** Close the save-recipe modal and clear its fields. */
 function closeModal() {
   modalOpen.value = false
   recipeName.value = ''
@@ -110,6 +133,10 @@ function closeModal() {
   recipeDev.value = ''
 }
 
+/**
+ * Appends the current times (plus optional name/temp/developer) to the saved
+ * list and persists it to localStorage. Falls back to "Recipe N" when unnamed.
+ */
 function saveRecipe() {
   const name = (recipeName.value || '').trim() || ('Recipe ' + (saved.value.length + 1))
   const rec = {
@@ -127,6 +154,7 @@ function saveRecipe() {
   recipeDev.value = ''
 }
 
+/** Populate the time fields from a saved recipe. */
 function loadRecipe(r) {
   const t = r.times || {}
   develop.value = t.develop ?? ''
@@ -136,10 +164,12 @@ function loadRecipe(r) {
   wash.value    = t.wash    ?? ''
 }
 
+/** Whole-minute estimate of the full process, shown on the setup screen. */
 const totalPreviewMin = computed(() =>
   Math.round((mins(develop.value) + mins(stop.value) + mins(fix.value) + mins(wash.value)) / 60)
 )
 
+/** Human-friendly rendering of the inversion interval ("off", "45 sec", "1m 30s"). */
 const invertDisplay = computed(() => {
   const s = parseInt(invert.value) || 0
   if (s === 0) return 'off'
@@ -163,6 +193,7 @@ const agitation = computed(() => {
   return { active, label: active ? 'Invert the tank now' : `Next inversion in ${fmt(iv - into)}` }
 })
 
+/** Caption above the big countdown ("Fixing · stage 3 of 4" / completion text). */
 const overline = computed(() => {
   if (!curStage.value) return ''
   if (done.value) return 'Complete · well developed'
@@ -172,6 +203,7 @@ const overline = computed(() => {
 const bigTime = computed(() => done.value ? '00:00' : fmt(stageLeft.value))
 const totalTimeStr = computed(() => fmt(totalLeft.value))
 
+/** Per-stage rows for the running view, flagged current / completed for styling. */
 const stageRows = computed(() =>
   stages.value.map((st, i) => ({
     label: st.label,
@@ -182,10 +214,12 @@ const stageRows = computed(() =>
 )
 
 onMounted(() => {
+  // Restore saved recipes; ignore anything malformed or a blocked localStorage.
   try {
     const raw = localStorage.getItem('darkroom-timer-recipes')
     if (raw) saved.value = JSON.parse(raw)
   } catch (e) {}
+  // Single ticker for the whole app; tick() itself no-ops when not running.
   timerInterval = setInterval(tick, 1000)
 })
 
@@ -216,6 +250,12 @@ onUnmounted(() => clearInterval(timerInterval))
           </div>
 
           <div class="fields">
+            <!--
+              Each time input is digits-only: @beforeinput cancels any keystroke
+              that would insert a non-digit, and @blur normalises the field to a
+              clamped integer string. `invert` uses onInvertBlur() for its
+              30-second snapping instead.
+            -->
             <label class="field-row">
               <span class="field-label">Develop for</span>
               <span class="field-value-wrap">

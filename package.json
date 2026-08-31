@@ -29,7 +29,7 @@
         "prettier": "^3.9.6",
         "playwright": "^1.62.1",
         "rollup-plugin-visualizer": "^7.1.1",
-        "sharp": "^0.35.3",
+        "sharp": "^0.35.4",
         "svgo": "^4.0.2",
         "vite": "^8.2.2",
         "vite-plugin-compression": "^0.5.1",

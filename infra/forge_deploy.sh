@@ -1,8 +1,12 @@
-# npm install @rollup/rollup-linux-x64-gnu --silent --no-audit --no-fund # bug in optional dependencies
+$CREATE_RELEASE()
 
-cd $FORGE_SITE_PATH
+cd $FORGE_RELEASE_DIRECTORY
 
-git checkout . # undo temp changes, restore to last git status to avoid pull conflicts
-git pull origin $FORGE_SITE_BRANCH # get latest
+# Forge clones with a token embedded in the remote URL; strip the userinfo so it
+# isn't left readable in .git/config of every release.
+git remote set-url origin "$(git remote get-url origin | sed -E 's#^(https?://)[^/@]+@#\1#')"
+
 $PNPM_PATH install --frozen-lockfile
 $PNPM_PATH run build
+
+$ACTIVATE_RELEASE()

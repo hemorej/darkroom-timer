@@ -146,7 +146,7 @@ function saveRecipe() {
     times: { develop: develop.value, invert: invert.value, stop: stop.value, fix: fix.value, wash: wash.value },
   }
   const next = [...saved.value, rec]
-  try { localStorage.setItem('darkroom-timer-recipes', JSON.stringify(next)) } catch (e) {}
+  try { localStorage.setItem('darkroom-timer-recipes', JSON.stringify(next)) } catch { /* storage unavailable */ }
   saved.value = next
   modalOpen.value = false
   recipeName.value = ''
@@ -218,7 +218,7 @@ onMounted(() => {
   try {
     const raw = localStorage.getItem('darkroom-timer-recipes')
     if (raw) saved.value = JSON.parse(raw)
-  } catch (e) {}
+  } catch { /* storage unavailable */ }
   // Single ticker for the whole app; tick() itself no-ops when not running.
   timerInterval = setInterval(tick, 1000)
 })

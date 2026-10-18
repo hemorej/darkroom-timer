@@ -11,6 +11,7 @@ export default [
     languageOptions: {
       globals: {
         ...globals.node,
+        ...globals.browser,
         _: true,
       },
     },
@@ -19,6 +20,9 @@ export default [
       "no-console": "off",
       "no-debugger": "off",
       "vue/no-multiple-template-root": "off",
+      // Modal.vue is only mounted via the parent's v-if, and its name is used as-is.
+      "vue/require-toggle-inside-transition": "off",
+      "vue/multi-word-component-names": "off",
     },
   },
 ];

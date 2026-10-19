@@ -4,9 +4,12 @@ allowBuilds:
 
 # Force a patched transitive version — brace-expansion@5.0.7, pulled in via
 # eslint > @eslint/config-array > minimatch, has two known high-severity DoS
-# advisories (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895) fixed in 5.0.9+.
+# advisories (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895) fixed in 5.0.9+, and
+# later advisories (GHSA-qhr7-859c-m2p7, GHSA-6j4f-fj2g-mc7p) fixed in 5.0.11+.
+# source-map-js (via postcss, svgo > css-tree) needs 1.2.2+ for GHSA-68fv-2mgg-jv7q.
 overrides:
-  brace-expansion: ">=5.0.9"
+  brace-expansion: ">=5.0.11"
+  source-map-js: ">=1.2.2"
 
 # Supply-chain safety net: refuse to resolve/install package versions
 # published more recently than this window. Malicious or compromised

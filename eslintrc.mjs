@@ -12,7 +12,6 @@ export default [
       globals: {
         ...globals.node,
         ...globals.browser,
-        _: true,
       },
     },
     ignores: ["dist/*", "node_modules/*"],

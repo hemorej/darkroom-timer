@@ -1,16 +1,12 @@
+/* TEAM */
 Your title: Darkroom Timer
 Site: https://darkroom.jerome-arfouche.ca
-Instagram: @jerome_a_
 Location: Montreal, Canada
 
-
 /* THANKS */
-Name: Foundation
-Standards: HTML5, CSS3
-Software: Sublime, Git, Sass
+Fonts: IBM Plex Sans, Spectral
 
 /* SITE */
-Last update: 2020/08/02
 Standards: HTML5, CSS3
-Components: Modernizr, Vue.js, Foundation
-Software: Sublime
+Components: Vue 3, Vite
+Software: Git, pnpm

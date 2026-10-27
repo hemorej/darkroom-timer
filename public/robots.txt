@@ -2,5 +2,3 @@
 
 User-agent: *
 Disallow:
-
-Sitemap: https://darkroom.jerome-arfouche.ca/sitemap.xml

@@ -360,7 +360,7 @@ onUnmounted(() => clearInterval(timerInterval))
           </div>
         </div>
 
-        <div class="footer">made by <a target="_blank" href="https://jerome-arfouche.com">jerome</a> · for film developers</div>
+        <div class="footer">made by <a target="_blank" href="https://jerome-arfouche.ca">jerome</a> · for film developers</div>
       </div>
     </div>
 

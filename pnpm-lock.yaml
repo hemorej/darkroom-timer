@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  tslib: 2.8.1
   source-map-js: '>=1.2.2'
   minimatch@10: ^11.0.1
 
@@ -28,7 +27,7 @@ importers:
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
-        version: 10.0.1(eslint@10.15.0(supports-color@7.2.0))
+        version: 10.0.1(eslint@10.15.0)
       '@sentry/vite-plugin':
         specifier: ^11.12.0
         version: 11.12.0
@@ -37,16 +36,16 @@ importers:
         version: 6.0.11(vite@8.3.8(esbuild@0.28.2)(yaml@2.9.0))(vue@3.5.45)
       '@vue/eslint-config-prettier':
         specifier: ^10.2.0
-        version: 10.2.0(eslint@10.15.0(supports-color@7.2.0))(prettier@3.10.1)
+        version: 10.2.0(eslint@10.15.0)(prettier@3.10.1)
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
       eslint:
         specifier: ^10.15.0
-        version: 10.15.0(supports-color@7.2.0)
+        version: 10.15.0
       eslint-plugin-vue:
         specifier: ^10.10.0
-        version: 10.10.0(eslint@10.15.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.15.0(supports-color@7.2.0)))
+        version: 10.10.0(eslint@10.15.0)(vue-eslint-parser@10.4.1(eslint@10.15.0))
       globals:
         specifier: ^17.14.0
         version: 17.14.0
@@ -1523,6 +1522,9 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
+  tslib@2.9.1:
+    resolution: {integrity: sha512-a4Ux9VKuIMHsOS7ENbEq6hK2ZGYIT27Rtl0E4eD9KqwxhKiQeMZE/9xb3IdYwWaSOyIBQLExhQgXDTYoiCxnWA==}
+
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -1687,7 +1689,7 @@ snapshots:
   '@emnapi/core@2.0.0-beta.2':
     dependencies:
       '@emnapi/wasi-threads': 2.2.0
-      tslib: 2.8.1
+      tslib: 2.9.1
     optional: true
 
   '@emnapi/runtime@1.11.3':
@@ -1697,12 +1699,12 @@ snapshots:
 
   '@emnapi/runtime@2.0.0-beta.2':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.9.1
     optional: true
 
   '@emnapi/wasi-threads@2.2.0':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.9.1
     optional: true
 
   '@esbuild/aix-ppc64@0.28.2':
@@ -1783,14 +1785,14 @@ snapshots:
   '@esbuild/win32-x64@0.28.2':
     optional: true
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.15.0(supports-color@7.2.0))':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.15.0)':
     dependencies:
-      eslint: 10.15.0(supports-color@7.2.0)
+      eslint: 10.15.0
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.23.6(supports-color@7.2.0)':
+  '@eslint/config-array@0.23.6':
     dependencies:
       '@eslint/object-schema': 3.0.5
       debug: 4.4.3(supports-color@7.2.0)
@@ -1806,9 +1808,9 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
 
-  '@eslint/js@10.0.1(eslint@10.15.0(supports-color@7.2.0))':
+  '@eslint/js@10.0.1(eslint@10.15.0)':
     optionalDependencies:
-      eslint: 10.15.0(supports-color@7.2.0)
+      eslint: 10.15.0
 
   '@eslint/object-schema@3.0.5': {}
 
@@ -2139,7 +2141,7 @@ snapshots:
 
   '@tybys/wasm-util@0.10.5':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.9.1
     optional: true
 
   '@types/esrecurse@4.3.1': {}
@@ -2184,11 +2186,11 @@ snapshots:
       '@vue/compiler-dom': 3.5.45
       '@vue/shared': 3.5.45
 
-  '@vue/eslint-config-prettier@10.2.0(eslint@10.15.0(supports-color@7.2.0))(prettier@3.10.1)':
+  '@vue/eslint-config-prettier@10.2.0(eslint@10.15.0)(prettier@3.10.1)':
     dependencies:
-      eslint: 10.15.0(supports-color@7.2.0)
-      eslint-config-prettier: 10.1.8(eslint@10.15.0(supports-color@7.2.0))
-      eslint-plugin-prettier: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.15.0(supports-color@7.2.0)))(eslint@10.15.0(supports-color@7.2.0))(prettier@3.10.1)
+      eslint: 10.15.0
+      eslint-config-prettier: 10.1.8(eslint@10.15.0)
+      eslint-plugin-prettier: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.15.0))(eslint@10.15.0)(prettier@3.10.1)
       prettier: 3.10.1
     transitivePeerDependencies:
       - '@types/eslint'
@@ -2391,28 +2393,28 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-prettier@10.1.8(eslint@10.15.0(supports-color@7.2.0)):
+  eslint-config-prettier@10.1.8(eslint@10.15.0):
     dependencies:
-      eslint: 10.15.0(supports-color@7.2.0)
+      eslint: 10.15.0
 
-  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.15.0(supports-color@7.2.0)))(eslint@10.15.0(supports-color@7.2.0))(prettier@3.10.1):
+  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.15.0))(eslint@10.15.0)(prettier@3.10.1):
     dependencies:
-      eslint: 10.15.0(supports-color@7.2.0)
+      eslint: 10.15.0
       prettier: 3.10.1
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
-      eslint-config-prettier: 10.1.8(eslint@10.15.0(supports-color@7.2.0))
+      eslint-config-prettier: 10.1.8(eslint@10.15.0)
 
-  eslint-plugin-vue@10.10.0(eslint@10.15.0(supports-color@7.2.0))(vue-eslint-parser@10.4.1(eslint@10.15.0(supports-color@7.2.0))):
+  eslint-plugin-vue@10.10.0(eslint@10.15.0)(vue-eslint-parser@10.4.1(eslint@10.15.0)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0(supports-color@7.2.0))
-      eslint: 10.15.0(supports-color@7.2.0)
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0)
+      eslint: 10.15.0
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 7.1.6
       semver: 7.8.5
-      vue-eslint-parser: 10.4.1(eslint@10.15.0(supports-color@7.2.0))
+      vue-eslint-parser: 10.4.1(eslint@10.15.0)
       xml-name-validator: 5.0.0
 
   eslint-scope@9.1.2:
@@ -2426,11 +2428,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.15.0(supports-color@7.2.0):
+  eslint@10.15.0:
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0(supports-color@7.2.0))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0)
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.6(supports-color@7.2.0)
+      '@eslint/config-array': 0.23.6
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.3
@@ -2886,6 +2888,9 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
+  tslib@2.9.1:
+    optional: true
+
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
@@ -2928,10 +2933,10 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.9.0
 
-  vue-eslint-parser@10.4.1(eslint@10.15.0(supports-color@7.2.0)):
+  vue-eslint-parser@10.4.1(eslint@10.15.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
-      eslint: 10.15.0(supports-color@7.2.0)
+      eslint: 10.15.0
       eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
       espree: 11.2.0

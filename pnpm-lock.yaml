@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  source-map-js: '>=1.2.2'
-  minimatch@10: ^11.0.1
-
 importers:
 
   .:

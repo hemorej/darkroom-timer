@@ -2,11 +2,6 @@ allowBuilds:
   esbuild: true
   sharp: true
 
-# source-map-js (via postcss, svgo > css-tree) needs 1.2.2+ for GHSA-68fv-2mgg-jv7q.
-overrides:
-  source-map-js: ">=1.2.2"
-  minimatch@10: '^11.0.1'
-
 # Supply-chain safety net: refuse to resolve/install package versions
 # published more recently than this window. Malicious or compromised
 # releases are typically caught and pulled from the registry within
